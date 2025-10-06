@@ -12,14 +12,23 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: 5296c416d14cdbd4a8fe2502bf993314
   - enabled: 1
+    path: Assets/Scenes/SaveLoadScene.unity
+    guid: f2c57ec54e782174b884f20f19cf10f0
+  - enabled: 1
     path: Assets/Scenes/CharacterSelectionScene.unity
     guid: 11ef8f28318d6cd4e892872b1eaf8369
   - enabled: 1
+    path: Assets/Scenes/Prologues/Soldier_Prologue.unity
+    guid: e0519b00f1e71ae49ab53f8e2dfd52d1
+  - enabled: 1
+    path: Assets/Scenes/Prologues/Poet_Prologue.unity
+    guid: e1d7cff7293defa45aabde21798c7261
+  - enabled: 1
+    path: Assets/Scenes/Prologues/King_Prologue.unity
+    guid: 3ec61815ad509344991288ed1008984c
+  - enabled: 1
     path: Assets/Scenes/GameSystems.unity
     guid: 384da8c914e87f047a74867164e0ece4
-  - enabled: 1
-    path: Assets/Scenes/SaveLoadScene.unity
-    guid: f2c57ec54e782174b884f20f19cf10f0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

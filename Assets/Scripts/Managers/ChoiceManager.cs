@@ -1,16 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class ChoiceManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Button[] choiceButtons;
+
+    public event Action<int> OnChoiceSelected;
+
+    public void ShowChoices(string[] choices)
     {
-        
+        for (int i = 0; i < choiceButtons.Length; i++)
+        {
+            choiceButtons[i].gameObject.SetActive(i < choices.Length);
+            if (i < choices.Length)
+                choiceButtons[i].GetComponentInChildren<TMPro.TMP_Text>().text = choices[i];
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void SelectChoice(int index) => OnChoiceSelected?.Invoke(index);
 }

@@ -1,16 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SceneManagerVN : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Image backgroundImage;
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeBackground(Sprite newBg)
     {
-        
+        backgroundImage.sprite = newBg;
     }
 }

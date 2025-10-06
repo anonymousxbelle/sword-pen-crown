@@ -9,7 +9,7 @@ namespace UI
     public class PauseMenu : MonoBehaviour
     {
         [Header("UI References")]
-        [SerializeField] private GameObject pauseMenuUI;
+        [SerializeField] private CanvasGroup pauseMenuCanvas;
         [SerializeField] private Button resumeButton;
         [SerializeField] private Button saveButton;
         [SerializeField] private Button loadButton;
@@ -18,11 +18,8 @@ namespace UI
         [SerializeField] private TMP_Text playtimeText;
 
         private bool isPaused = false;
-
         private void Start()
         {
-            pauseMenuUI.SetActive(false);
-
             // Added RemoveAllListeners for safety
             resumeButton.onClick.RemoveAllListeners();
             resumeButton.onClick.AddListener(Resume);
@@ -38,23 +35,52 @@ namespace UI
             
             showPlaytimeButton.onClick.RemoveAllListeners();
             showPlaytimeButton.onClick.AddListener(ShowPlaytime);
+            
+            GameManager.Instance.PauseMenuCanvas = pauseMenuCanvas.gameObject;
+            
+            HidePauseMenuOnSceneStart();
         }
+
+        // PauseMenu.cs (Add or update the Update method)
 
         private void Update()
         {
+            // Check if the game is paused/resumed (your existing logic)
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                // Ensure a popup isn't currently open before pausing/resuming
                 if (PopupManager.Instance != null && PopupManager.Instance.IsPopupActive) return;
-
                 if (isPaused) Resume();
                 else Pause();
             }
+
+            // *** NEW: Control save button visibility/interactability ***
+            ControlSaveButton();
         }
 
+// PauseMenu.cs (Add this new private method)
+
+        private void ControlSaveButton()
+        {
+            // Get the name of the currently loaded scene
+            string currentSceneName = SceneManager.GetActiveScene().name;
+    
+            // Define scenes where saving is NOT allowed
+            bool isSetupScene = 
+                currentSceneName == "MainMenuScene" || 
+                currentSceneName == "CharacterSelectionScene" ||
+                currentSceneName == "SaveLoadScene"; // Also block saving if in the Save/Load menu itself (optional, but safer)
+
+            // Save button should be interactable only if we are NOT in a setup scene
+            if (saveButton != null)
+            {
+                saveButton.interactable = !isSetupScene;
+                // Optionally, you can visually hide the button if saving is not allowed
+                // saveButton.gameObject.SetActive(!isSetupScene);
+            }
+        }
         public void Pause()
         {
-            pauseMenuUI.SetActive(true);
+            SetMenuVisible(true);
             Time.timeScale = 0f;
             isPaused = true;
             GameManager.Instance.SetPaused(true);
@@ -62,7 +88,7 @@ namespace UI
 
         public void Resume()
         {
-            pauseMenuUI.SetActive(false);
+            SetMenuVisible(false);
             Time.timeScale = 1f;
             isPaused = false;
             GameManager.Instance.SetPaused(false);
@@ -74,7 +100,7 @@ namespace UI
             GameManager.Instance.SetSaveLoadSource(true, false, true); // (fromPauseMenu, isSaveMode=true)
             SceneManager.LoadScene("SaveLoadScene", LoadSceneMode.Additive);
 
-            pauseMenuUI.SetActive(false);
+            SetMenuVisible(false);
         }
 
         private void OpenSaveSceneForLoad()
@@ -83,7 +109,7 @@ namespace UI
             GameManager.Instance.SetSaveLoadSource(true, false, false); // (fromPauseMenu, isSaveMode=false)
             SceneManager.LoadScene("SaveLoadScene", LoadSceneMode.Additive);
 
-            pauseMenuUI.SetActive(false);
+            SetMenuVisible(false);
         }
 
         private void ReturnToMainMenu()
@@ -106,6 +132,22 @@ namespace UI
             );
         
         }
+        //Trying to fix dialogue not reacting after load game
+        public void SetMenuVisible(bool active)
+        {
+            pauseMenuCanvas.alpha = active ? 1f : 0f;
+            pauseMenuCanvas.interactable = active;
+            pauseMenuCanvas.blocksRaycasts = active;
+        }
+        
+        public void HidePauseMenuOnSceneStart()
+        {
+            SetMenuVisible(false);
+            isPaused = false;
+            GameManager.Instance.SetPaused(false);
+            Time.timeScale = 1f;
+        }
+
 
         private void ShowPlaytime()
         {
