@@ -27,12 +27,11 @@ namespace Managers
         
         private DialogueLine[] dialogueLines;
         private int currentLine = 0;
-// --- NEW ---
+
         [SerializeField] private GameObject choiceButtonPrefab;
         [SerializeField] private GameObject choicePanel; // stores scene-specific choice buttons
         private void Awake()
-        {
-// Singleton
+        { //Ensures one consistent dialogue manager across all scenes and prevents UI from lingering on start.
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
@@ -44,37 +43,32 @@ namespace Managers
             if (dialogueBox != null)
                 dialogueBox.SetActive(false);
         }
-
-
-
-// --- NEW METHOD ---
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-// Skip Gamesystems scene
-            if (scene.name == "GameSystems") return;
+            if (scene.name == "GameSystems") return;  //Skips setup for your backend “GameSystems” scene where all managers live
             dialogueBox = GameObject.FindWithTag("DialogueBox");
             GameObject textObj = GameObject.FindWithTag("DialogueText");
             GameObject speakerObj = GameObject.FindWithTag("SpeakerText");
-            
+            //Finds the UI elements in the new scene by tag.
             if (dialogueBox != null)
-                dialogueBox.SetActive(false);
+                dialogueBox.SetActive(false);//Hides the dialogue UI
             else
                 Debug.LogWarning($"DialogueBox not found in {scene.name}");
 
             
             if (textObj != null)
-                dialogueText = textObj.GetComponent<TMP_Text>();
+                dialogueText = textObj.GetComponent<TMP_Text>(); //Assigns references dynamically.
             else
                 Debug.LogWarning($"DialogueText not found in {scene.name}");
 
             
-            if (speakerObj != null)
+            if (speakerObj != null) //Assigns references dynamically.
                 speakerText = speakerObj.GetComponent<TMP_Text>();
             else
                 Debug.LogWarning($"SpeakerText not found in {scene.name}");
             
             if (dialogueLines != null && dialogueLines.Length > 0)
-                RefreshUI();
+                RefreshUI();//If a dialogue was already in progress (e.g., after loading a save), it reinitializes the UI.
         }
         
         public void AssignDialogueUI(GameObject box, TMP_Text dialogue, TMP_Text speaker)
@@ -88,10 +82,9 @@ namespace Managers
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
-// Method 1: For speaker + text dialogue
         public void SetDialogue(DialogueLine[] lines)
-
-        {
+        { /*Starts a dialogue with both text and speakers.
+            Sets active state, resets to first line, shows UI, and displays the first line.*/
             isDialogueActive = true;
             dialogueLines = lines;
             currentLine = 0;
@@ -99,11 +92,9 @@ namespace Managers
                 dialogueBox.SetActive(true);
             ShowCurrentLine();
         }
-
-// Method 2: For narration-only dialogue
+        
         public void SetDialogue(string[] lines)
-
-        {
+        { //Same as above, but automatically wraps plain strings into DialogueLine structs with empty speaker fields.
             isDialogueActive = true;
             dialogueLines = new DialogueLine[lines.Length];
             for (int i = 0; i < lines.Length; i++)
@@ -122,9 +113,10 @@ namespace Managers
         {
             if (dialogueText == null || dialogueLines == null || currentLine >= dialogueLines.Length)
                 return;
+            
             dialogueText.text = dialogueLines[currentLine].text;
+            
             if (speakerText != null)
-
             {
                 if (!string.IsNullOrEmpty(dialogueLines[currentLine].speaker))
                 {
@@ -135,14 +127,15 @@ namespace Managers
                 {
                     speakerText.gameObject.SetActive(false);
                 }
-            }
+            }//Shows or hides the speaker name box depending on whether a speaker exists.
         }
 
         public void NextLine()
-
         {
             if (dialogueLines == null) return;
+            
             currentLine++;
+            
             if (currentLine >= dialogueLines.Length)
             {
                 EndDialogue();
@@ -151,49 +144,48 @@ namespace Managers
             {
                 ShowCurrentLine();
             }
-
         }
         
         public void SetLine(int lineIndex)
-        {
+        { //Lets you jump to a specific dialogue line (used during save/load restoration).
             if (dialogueLines == null || lineIndex < 0 || lineIndex >= dialogueLines.Length)
                 return;
+            
             isDialogueActive = true;
             currentLine = lineIndex;
             ShowCurrentLine();
         }
         
         public int GetCurrentLine()
-        {
+        { //Returns the current line index (for saving game progress).
             return currentLine;
         }
         
         private void EndDialogue()
-        {
+        { //Resets everything when dialogue ends and hides the dialogue box.
             dialogueLines = null;
             currentLine = 0;
             if (dialogueBox != null)
                 dialogueBox.SetActive(false);
             isDialogueActive = false;
         }
-
         public void ShowChoices(string[] choices, System.Action<int> onChoiceSelected)
         {
             if (choicePanel == null || choiceButtonPrefab == null) return;
-// Clear old buttons
-            foreach (Transform child in choicePanel.transform)
+      
+            foreach (Transform child in choicePanel.transform)//  // Clear old buttons
                 Destroy(child.gameObject);
-// Create new buttons
-            for (int i = 0; i < choices.Length; i++)
+        
+            for (int i = 0; i < choices.Length; i++)// Create new buttons
             {
                 int index = i; // capture for lambda
                 GameObject buttonObj = Instantiate(choiceButtonPrefab, choicePanel.transform);
                 TMP_Text text = buttonObj.GetComponentInChildren<TMP_Text>();
                 text.text = choices[i];
                 Button button = buttonObj.GetComponent<Button>();
-                button.onClick.AddListener(() =>
+                button.onClick.AddListener(() =>//adds a function to run when the button is clicked.
                 {
-                    onChoiceSelected?.Invoke(index);
+                    onChoiceSelected?.Invoke(index);//calls the callback passed in from outside, giving it the index of the choice the player made.
                     choicePanel.SetActive(false);
                 });
             }
@@ -202,32 +194,25 @@ namespace Managers
 
 
         public void RefreshUI()
-        {
+        { //Re-shows dialogue box and restores current line
             if (dialogueBox != null) dialogueBox.SetActive(true);
             ShowCurrentLine();
         }
-
-
-
-
-
         public bool InstanceIsNotReady()
         {
-
-// Returns true if not ready yet (so callers can wait while this returns true)
-// We check the UI refs — OnSceneLoaded populates them.
+            //Used by GameManager.RestoreDialogLineWhenReady() to wait until this manager finishes reconnecting to the new scene’s UI
             return (dialogueText == null || speakerText == null || dialogueBox == null);
         }
+        
         private void Update()
         {
-// Check if the game is paused ***
+        // Check if the game is paused
             if (GameManager.Instance.IsPaused || (PopupManager.Instance != null && PopupManager.Instance.IsPopupActive))
             {
                 return; // Do NOT process dialogue input if paused or a popup is open
             }
-// Original input processing
+        //input processing
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return))
-
             {
                 NextLine();
             }

@@ -55,7 +55,6 @@
     <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\Managers\SaveLoadManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ChoiceManager.cs" />
-    <Compile Include="Assets\Scripts\EventSystemPersistence.cs" />
     <Compile Include="Assets\Scripts\Managers\DialogueManager.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

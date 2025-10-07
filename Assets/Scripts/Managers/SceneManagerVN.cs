@@ -6,7 +6,7 @@ public class SceneManagerVN : MonoBehaviour
     [SerializeField] private Image backgroundImage;
 
     public void ChangeBackground(Sprite newBg)
-    {
+    {//self-explanatory
         backgroundImage.sprite = newBg;
     }
 }

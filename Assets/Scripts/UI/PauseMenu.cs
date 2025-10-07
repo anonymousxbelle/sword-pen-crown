@@ -18,6 +18,7 @@ namespace UI
         [SerializeField] private TMP_Text playtimeText;
 
         private bool isPaused = false;
+        private bool isShowingPlaytime = false;
         private void Start()
         {
             // Added RemoveAllListeners for safety
@@ -36,16 +37,14 @@ namespace UI
             showPlaytimeButton.onClick.RemoveAllListeners();
             showPlaytimeButton.onClick.AddListener(ShowPlaytime);
             
-            GameManager.Instance.PauseMenuCanvas = pauseMenuCanvas.gameObject;
+            GameManager.Instance.PauseMenuCanvas = pauseMenuCanvas.gameObject; //Stores the canvas in GameManager for global access.
             
             HidePauseMenuOnSceneStart();
         }
-
-        // PauseMenu.cs (Add or update the Update method)
-
+        
         private void Update()
         {
-            // Check if the game is paused/resumed (your existing logic)
+            // Check if the game is paused/resumed 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (PopupManager.Instance != null && PopupManager.Instance.IsPopupActive) return;
@@ -53,12 +52,10 @@ namespace UI
                 else Pause();
             }
 
-            // *** NEW: Control save button visibility/interactability ***
+            //Control save button visibility/interactability 
             ControlSaveButton();
         }
-
-// PauseMenu.cs (Add this new private method)
-
+        
         private void ControlSaveButton()
         {
             // Get the name of the currently loaded scene
@@ -74,12 +71,11 @@ namespace UI
             if (saveButton != null)
             {
                 saveButton.interactable = !isSetupScene;
-                // Optionally, you can visually hide the button if saving is not allowed
-                // saveButton.gameObject.SetActive(!isSetupScene);
+                saveButton.gameObject.SetActive(!isSetupScene);// visually hide the button if saving is not allowed
             }
         }
         public void Pause()
-        {
+        {//shows the menu, freezes the game (Time.timeScale = 0), and updates
             SetMenuVisible(true);
             Time.timeScale = 0f;
             isPaused = true;
@@ -87,7 +83,7 @@ namespace UI
         }
 
         public void Resume()
-        {
+        {//hides the menu, unfreezes the game, and updates GameManager.
             SetMenuVisible(false);
             Time.timeScale = 1f;
             isPaused = false;
@@ -96,7 +92,6 @@ namespace UI
 
         private void OpenSaveSceneForSave()
         {
-            // Set the source and mode for the SaveLoadManager to use
             GameManager.Instance.SetSaveLoadSource(true, false, true); // (fromPauseMenu, isSaveMode=true)
             SceneManager.LoadScene("SaveLoadScene", LoadSceneMode.Additive);
 
@@ -105,7 +100,6 @@ namespace UI
 
         private void OpenSaveSceneForLoad()
         {
-            // Set the source and mode for the SaveLoadManager to use
             GameManager.Instance.SetSaveLoadSource(true, false, false); // (fromPauseMenu, isSaveMode=false)
             SceneManager.LoadScene("SaveLoadScene", LoadSceneMode.Additive);
 
@@ -119,20 +113,18 @@ namespace UI
                 "Return to Main Menu? Unsaved progress will be lost.",
                 () =>
                 {
-                    // CRITICAL FIX: Close the popup NOW, while we are still in the GameScene
-                    PopupManager.Instance.ForceClosePopup(); 
-            
-                    Time.timeScale = 1f;
+                    PopupManager.Instance.ForceClosePopup();
+                    Time.timeScale = 1f; //unpauses
                     GameManager.Instance.SetPaused(false);
                     GameManager.Instance.ClearSaveLoadSource();
             
-                    SceneManager.LoadScene("MainMenuScene");
+                    SceneManager.LoadScene("MainMenuScene");//loads main menu scene
                 },
                 null // Cancel does nothing
             );
         
         }
-        //Trying to fix dialogue not reacting after load game
+        
         public void SetMenuVisible(bool active)
         {
             pauseMenuCanvas.alpha = active ? 1f : 0f;
@@ -147,14 +139,24 @@ namespace UI
             GameManager.Instance.SetPaused(false);
             Time.timeScale = 1f;
         }
-
-
+        
         private void ShowPlaytime()
         {
-            if (playtimeText != null)
+            if (playtimeText == null) return;
+            
+            if (isShowingPlaytime)
             {
+                // Toggle back to default label
+                playtimeText.text = "Show Playtime";
+                isShowingPlaytime = false;
+            }
+            else
+            {
+                // Show actual playtime
                 playtimeText.text = $"Playtime: {GameManager.Instance.GetFormattedPlaytime()}";
+                isShowingPlaytime = true;
             }
         }
+        
     }
 }

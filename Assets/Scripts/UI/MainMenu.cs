@@ -13,7 +13,9 @@ namespace UI
         [SerializeField] private Button loadGameButton;
         [SerializeField] private Button quitButton;
         private void Start()
-        {
+        { /*Sets up button click listeners to call the correct methods.
+        Removes any previous listeners to prevent duplicates.
+        Stores a reference to the mainMenuCanvas in the GameManager so other systems can control its visibility.*/
             startNewGameButton.onClick.RemoveAllListeners();
             startNewGameButton.onClick.AddListener(StartNewGame);
             loadGameButton.onClick.RemoveAllListeners();
@@ -25,43 +27,40 @@ namespace UI
         
         public void StartNewGame()
         {
-            int firstEmpty = GameManager.Instance.GetFirstEmptySlot();
+            int firstEmpty = GameManager.Instance.GetFirstEmptySlot();//checks for empty slot
             if (firstEmpty == -1)
-            {
-                int slotToOverwrite = GameManager.Instance.LastUsedSlotIndex;
+            { //if none
+               
                 PopupManager.Instance.ShowConfirmation(
                     "All slots are full! You must reset a slot to continue.",
                     () =>
                     {
                         GameManager.Instance.SetSaveLoadSource(false, true, true);
-                        GameManager.Instance.SetLastUsedSlot(slotToOverwrite);
                         GameManager.Instance.IsResetForNewGameRequired = true;
-                        SceneManager.LoadScene("SaveLoadScene", LoadSceneMode.Additive);
-                        SaveLoadManager manager = FindAnyObjectByType<SaveLoadManager>();
-                        if (manager != null) manager.HighlightSlotForOverwrite(slotToOverwrite);
+                        SceneManager.LoadScene("SaveLoadScene", LoadSceneMode.Additive); //loads saveload scene
                         SetMenuVisible(false);
                     },
                     null
                 );
                 return;
             }
+            
+            //if there are empty slots
     
-            GameManager.Instance.SetLastUsedSlot(firstEmpty);
+            GameManager.Instance.SetLastUsedSlot(firstEmpty); //selects empty slot for new game
             GameManager.Instance.SetNewGame();
-
-            // Set deferred flags - no immediate SaveGame call here!
+            
             GameManager.Instance.ShouldAutoSaveNewGameAfterLoad = true;
             GameManager.Instance.AutoSaveSlotIndex = firstEmpty;
 
             SceneManager.LoadScene("CharacterSelectionScene");
-
             SetMenuVisible(false);
         }
 
 
 
         public void SetMenuVisible(bool active)
-        {
+        {//Controls the visibility and interactivity of the main menu.
             mainMenuCanvas.alpha = active ? 1f : 0f;
             mainMenuCanvas.interactable = active;
             mainMenuCanvas.blocksRaycasts = active;
@@ -69,8 +68,8 @@ namespace UI
         public void OpenLoadScene()
         {
             GameManager.Instance.SetSaveLoadSource(false, true, false); // fromMainMenu, load mode
-            SceneManager.LoadScene("SaveLoadScene", LoadSceneMode.Additive);
-            SetMenuVisible(false);
+            SceneManager.LoadScene("SaveLoadScene", LoadSceneMode.Additive); //loads saveload scene
+            SetMenuVisible(false); //hides main menu
         }
         public void QuitGame()
         {
@@ -79,9 +78,9 @@ namespace UI
                 () =>
                 {
 #if UNITY_EDITOR
-                    UnityEditor.EditorApplication.isPlaying = false;
+                    UnityEditor.EditorApplication.isPlaying = false; //Stops play mode in the editor
 #else
-Application.Quit();
+Application.Quit();//quits the built game
 #endif
                 },
                 null
