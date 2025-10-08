@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/CharacterSelectionScene.unity
     guid: 11ef8f28318d6cd4e892872b1eaf8369
   - enabled: 1
-    path: Assets/Scenes/Prologues/Soldier_Prologue.unity
+    path: Assets/Scenes/Soldier/Soldier_Prologue.unity
     guid: e0519b00f1e71ae49ab53f8e2dfd52d1
   - enabled: 1
     path: Assets/Scenes/Prologues/Poet_Prologue.unity

@@ -9,8 +9,9 @@ namespace Managers
 
     {
         public static DialogueManager Instance { get; private set; }
-        private bool isDialogueActive = false;
+        private bool isDialogueActive;
         public bool IsDialogueActive => isDialogueActive; // read-only property for other scripts
+     
         
         [Header("UI References")] [SerializeField]
         private TMP_Text speakerText;
@@ -30,9 +31,6 @@ namespace Managers
         
         private DialogueLine[] dialogueLines;
         private int currentLine = 0;
-
-        [SerializeField] private GameObject choiceButtonPrefab;
-        [SerializeField] private GameObject choicePanel; // stores scene-specific choice buttons
         private void Awake()
         { //Ensures one consistent dialogue manager across all scenes and prevents UI from lingering on start.
             if (Instance != null && Instance != this)
@@ -74,11 +72,12 @@ namespace Managers
                 RefreshUI();//If a dialogue was already in progress (e.g., after loading a save), it reinitializes the UI.
         }
         
-        public void AssignDialogueUI(GameObject box, TMP_Text dialogue, TMP_Text speaker)
+        public void AssignDialogueUI(GameObject box, TMP_Text dialogue, TMP_Text speaker, Image character)
         {
             dialogueBox = box;
             dialogueText = dialogue;
             speakerText = speaker;
+            characterImage = character;
         }
         
         private void OnDestroy()
@@ -142,6 +141,7 @@ namespace Managers
                 else
                 {
                     characterImage.gameObject.SetActive(false);
+                    
                 }
             } //shows/changes character image depending on who's speaking
         }
@@ -185,29 +185,6 @@ namespace Managers
                 dialogueBox.SetActive(false);
             isDialogueActive = false;
         }
-        public void ShowChoices(string[] choices, System.Action<int> onChoiceSelected)
-        {
-            if (choicePanel == null || choiceButtonPrefab == null) return;
-      
-            foreach (Transform child in choicePanel.transform)//  // Clear old buttons
-                Destroy(child.gameObject);
-        
-            for (int i = 0; i < choices.Length; i++)// Create new buttons
-            {
-                int index = i; // capture for lambda
-                GameObject buttonObj = Instantiate(choiceButtonPrefab, choicePanel.transform);
-                TMP_Text text = buttonObj.GetComponentInChildren<TMP_Text>();
-                text.text = choices[i];
-                Button button = buttonObj.GetComponent<Button>();
-                button.onClick.AddListener(() =>//adds a function to run when the button is clicked.
-                {
-                    onChoiceSelected?.Invoke(index);//calls the callback passed in from outside, giving it the index of the choice the player made.
-                    choicePanel.SetActive(false);
-                });
-            }
-            choicePanel.SetActive(true);
-        }
-
 
         public void RefreshUI()
         { //Re-shows dialogue box and restores current line

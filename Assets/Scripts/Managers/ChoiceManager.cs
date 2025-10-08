@@ -1,24 +1,63 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
-public class ChoiceManager : MonoBehaviour
+namespace Managers
 {
-    [SerializeField] private Button[] choiceButtons;
-
-    public event Action<int> OnChoiceSelected;
-
-    public void ShowChoices(string[] choices)
+    public class ChoiceManager : MonoBehaviour
     {
-        for (int i = 0; i < choiceButtons.Length; i++)
+        public static ChoiceManager Instance { get; private set; }
+        
+        [Header("UI References")] 
+        [SerializeField] private GameObject choiceCanvas;
+
+        [SerializeField] private TMP_Text headingText;
+        [SerializeField] private Button[] choiceButtons;
+        public event Action<int> OnChoiceSelected;
+
+        private void Awake()
         {
-            choiceButtons[i].gameObject.SetActive(i < choices.Length);/*Checks if the current index i is within the number of available choices.
-            If it is, the button’s GameObject is made active (visible and clickable).
-            If it’s not, the button is deactivated, hiding unused buttons (for instance, if there are only 2 choices but 4 buttons exist).*/
-            if (i < choices.Length)
-                choiceButtons[i].GetComponentInChildren<TMPro.TMP_Text>().text = choices[i];
+            if (Instance == null){
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else{
+                Destroy(gameObject);
+            }
+            // Hide choices until needed
+            if (choiceCanvas != null)
+                choiceCanvas.SetActive(false);
+        }
+
+        public void ShowChoices(string heading, string[] choices, Action<int> callback)
+        {
+            headingText.text = heading;
+            OnChoiceSelected = callback;
+
+            choiceCanvas.SetActive(true);
+
+            for (int i = 0; i < choiceButtons.Length; i++)
+            {
+                if (i < choices.Length)
+                {
+                    choiceButtons[i].gameObject.SetActive(true);
+                    choiceButtons[i].GetComponentInChildren<TMP_Text>().text = choices[i];
+                    int index = i;
+                    choiceButtons[i].onClick.RemoveAllListeners();
+                    choiceButtons[i].onClick.AddListener(() => SelectChoice(index));
+                }
+                else
+                {
+                    choiceButtons[i].gameObject.SetActive(false);
+                }
+            }
+        }
+
+        private void SelectChoice(int index)
+        {
+            choiceCanvas.SetActive(false);
+            OnChoiceSelected?.Invoke(index);
         }
     }
-
-    public void SelectChoice(int index) => OnChoiceSelected?.Invoke(index);//f there are any subscribers to OnChoiceSelected, call them and pass along index
 }
