@@ -16,6 +16,8 @@ namespace Managers
         private TMP_Text speakerText;
         [SerializeField] private TMP_Text dialogueText;
         [SerializeField] private GameObject dialogueBox;
+        [SerializeField] private Image characterImage;
+        
 
         
         [System.Serializable]
@@ -23,6 +25,7 @@ namespace Managers
         {
             public string speaker;
             public string text;
+            public Sprite characterSprite; // new field for character image
         }
         
         private DialogueLine[] dialogueLines;
@@ -128,6 +131,19 @@ namespace Managers
                     speakerText.gameObject.SetActive(false);
                 }
             }//Shows or hides the speaker name box depending on whether a speaker exists.
+
+            if (characterImage != null)
+            {
+                if (dialogueLines[currentLine].characterSprite != null)
+                {
+                    characterImage.gameObject.SetActive(true);
+                    characterImage.sprite = dialogueLines[currentLine].characterSprite;
+                }
+                else
+                {
+                    characterImage.gameObject.SetActive(false);
+                }
+            } //shows/changes character image depending on who's speaking
         }
 
         public void NextLine()
