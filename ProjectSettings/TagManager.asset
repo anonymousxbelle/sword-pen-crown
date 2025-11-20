@@ -7,6 +7,8 @@ TagManager:
   - DialogueBox
   - SpeakerText
   - DialogueText
+  - CharacterImage
+  - Clicker
   layers:
   - Default
   - TransparentFX

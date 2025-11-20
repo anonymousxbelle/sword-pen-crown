@@ -62,9 +62,8 @@ namespace UI
             string currentSceneName = SceneManager.GetActiveScene().name;
     
             // Define scenes where saving is NOT allowed
-            bool isSetupScene = 
-                currentSceneName == "MainMenuScene" || 
-                currentSceneName == "CharacterSelectionScene" ||
+            bool isSetupScene =
+                currentSceneName == "MainMenuScene" ||
                 currentSceneName == "SaveLoadScene"; // Also block saving if in the Save/Load menu itself (optional, but safer)
 
             // Save button should be interactable only if we are NOT in a setup scene

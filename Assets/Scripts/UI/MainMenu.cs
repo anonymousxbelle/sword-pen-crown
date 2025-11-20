@@ -12,22 +12,22 @@ namespace UI
         [SerializeField] private Button startNewGameButton;
         [SerializeField] private Button loadGameButton;
         [SerializeField] private Button quitButton;
+        [SerializeField] private Image TitleScreen;
         private void Start()
-        { /*Sets up button click listeners to call the correct methods.
-        Removes any previous listeners to prevent duplicates.
-        Stores a reference to the mainMenuCanvas in the GameManager so other systems can control its visibility.*/
+        { 
             startNewGameButton.onClick.RemoveAllListeners();
             startNewGameButton.onClick.AddListener(StartNewGame);
             loadGameButton.onClick.RemoveAllListeners();
             loadGameButton.onClick.AddListener(OpenLoadScene);
             quitButton.onClick.RemoveAllListeners();
             quitButton.onClick.AddListener(QuitGame);
+            
             GameManager.Instance.MainMenuCanvas = mainMenuCanvas.gameObject;
         }
         
         public void StartNewGame()
         {
-            int firstEmpty = GameManager.Instance.GetFirstEmptySlot();//checks for empty slot
+        /*    int firstEmpty = GameManager.Instance.GetFirstEmptySlot();//checks for empty slot
             if (firstEmpty == -1)
             { //if none
                
@@ -51,10 +51,18 @@ namespace UI
             GameManager.Instance.SetNewGame();
             
             GameManager.Instance.ShouldAutoSaveNewGameAfterLoad = true;
-            GameManager.Instance.AutoSaveSlotIndex = firstEmpty;
-
-            SceneManager.LoadScene("CharacterSelectionScene");
+            GameManager.Instance.AutoSaveSlotIndex = firstEmpty;*/
+            TitleScreen.gameObject.SetActive(false);
             SetMenuVisible(false);
+            
+            DialogueManager.Instance.LoadInkStory(DialogueManager.Instance.InkJsonAsset);
+
+            // Reset game flags
+            DialogueManager.Instance.isCharacterSelection = true; // force character pick if first scene
+            GameManager.Instance.ClearSaveLoadSource();
+
+            // Load starting scene
+            SceneManager.LoadScene("StoryScene");
         }
 
 

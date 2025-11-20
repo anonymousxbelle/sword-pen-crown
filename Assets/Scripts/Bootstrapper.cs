@@ -8,9 +8,6 @@ public class Bootstrapper : MonoBehaviour
     
     private void Awake()
     {
-    // Make sure this object persists across scenes
-        DontDestroyOnLoad(gameObject);
-        
     // Check if GameSystems scene is already loaded
         if (!SceneManager.GetSceneByName(gameSystemsSceneName).isLoaded)
         {

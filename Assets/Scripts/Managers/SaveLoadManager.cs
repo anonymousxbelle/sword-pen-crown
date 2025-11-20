@@ -15,6 +15,7 @@ namespace Managers
         [SerializeField] private Button[] resetButtons;
         [SerializeField] private Button closeButton;
         [SerializeField] private TMP_Text[] slotLabels;
+        [SerializeField] private TextAsset inkFile;
         
         private bool isSaveMode;
         public void Initialize(bool saveMode)
@@ -101,124 +102,149 @@ namespace Managers
                 }
             }
         }
+
         private IEnumerator LoadAndRestore(int slotIndex)
-        { //Handles loading a save and restoring the player’s state.
-            GameSave save = GameManager.Instance.LoadGame(slotIndex);//Loads saved data:
-            if (save == null || string.IsNullOrEmpty(save.sceneName)) yield break;
+        {
+            var save = GameManager.Instance.LoadGame(slotIndex);
+            if (save == null)
+            {
+                PopupManager.Instance.ShowMessage("Failed to load save data.");
+                yield break;
+            }
 
-            PopupManager.Instance?.ForceClosePopup();
+            // Restore player character BEFORE scene load
+            if (!string.IsNullOrEmpty(save.playerCharacter))
+            {
+                GameManager.Instance.PlayerChoice = save.playerCharacter;
+                GameManager.Instance.SetCanSave(true); // Enable saving since character is already chosen
+            }
 
-            AsyncOperation op = SceneManager.LoadSceneAsync(save.sceneName); //Loads the saved scene asynchronously:
-            yield return new WaitUntil(() => op.isDone);
+            GameManager.Instance.ClearSaveLoadSource();
+            AsyncOperation unload = SceneManager.UnloadSceneAsync("SaveLoadScene");
+            yield return new WaitUntil(() => unload.isDone);
 
-            GameManager.Instance.SetPaused(false); //unpauses the game
-            Time.timeScale = 1f;
+            AsyncOperation load = SceneManager.LoadSceneAsync(save.sceneName, LoadSceneMode.Single);
+            yield return new WaitUntil(() => load.isDone);
 
-            while (DialogueManager.Instance == null || DialogueManager.Instance.InstanceIsNotReady())
-                yield return null; //Wait till dialogue manager is initialized
+            // Wait for DialogueManager to initialize
+            while (DialogueManager.Instance == null)
+                yield return null;
 
-            DialogueManager.Instance.SetLine(save.dialogueIndex);//restores dialogue state
-            DialogueManager.Instance.RefreshUI(); //updates UI
-            
-            //Finds the PauseMenu object in the scene (if it exists) and hides it, ensuring it does not appear after loading.
-            PauseMenu pauseMenu = FindAnyObjectByType<PauseMenu>();
-            if (pauseMenu != null)
-                pauseMenu.HidePauseMenuOnSceneStart();
-            /*Checks if the temporary “Save/Load” UI scene is still loaded.
-            If it is, unload it so the player only sees the actual gameplay scene.*/
-            if (SceneManager.GetSceneByName("SaveLoadScene").isLoaded)
-                SceneManager.UnloadSceneAsync("SaveLoadScene");
+            // Wait for StoryManager to initialize
+            StoryManager storyManager = null;
+            while (storyManager == null)
+            {
+                storyManager = FindAnyObjectByType<StoryManager>();
+                yield return null;
+            }
 
-            if (GameManager.Instance.OpenedFromPauseMenu)
-                FindAnyObjectByType<PauseMenu>()?.SetMenuVisible(false);
-            else if (GameManager.Instance.OpenedFromMainMenu)
-                FindAnyObjectByType<MainMenu>()?.SetMenuVisible(false);
+            // Get the ink asset from StoryManager
+            TextAsset inkAsset = storyManager.InkJSONAsset;
 
-            GameManager.Instance.ClearSaveLoadSource();//final clean up
+            if (inkAsset == null)
+            {
+                Debug.LogError("StoryManager's InkJSONAsset is null!");
+                PopupManager.Instance.ShowMessage("Failed to load story data.");
+                yield break;
+            }
+
+            // Restore Ink state
+            if (!string.IsNullOrEmpty(save.inkState))
+            {
+                DialogueManager.Instance.LoadInkStory(inkAsset);
+                yield return null; // Wait one frame for story to initialize
+
+                DialogueManager.Instance.LoadInkState(save.inkState);
+
+                // Restore current line for visual continuity
+                if (!string.IsNullOrEmpty(save.currentLine))
+                    DialogueManager.Instance.SetCurrentLine(save.currentLine);
+            }
+
+            GameManager.Instance.currentSave = save;
+            PopupManager.Instance.ShowMessage($"Loaded Slot {slotIndex + 1}");
         }
 
-        
-     private void OnSlotClicked(int slotIndex)
+
+        private void OnSlotClicked(int slotIndex)
+    {
+        if (isSaveMode)
+        {
+            // --- SAVE MODE ---
+            
+            //PUT IN NEW GAME LOGIC
+            /*bool allFull = GameManager.Instance.GetFirstEmptySlot() == -1;
+            bool startingNewGame = GameManager.Instance.IsNewGame;
+
+            // Case 1: All slots full, starting new game (overwrite prompt)
+            if (startingNewGame && allFull)
             {
-                if (isSaveMode)
-                {//save mode
-                    bool allFull = GameManager.Instance.GetFirstEmptySlot() == -1;//checks if all slots are full
-                    bool startingNewGame = GameManager.Instance.IsNewGame;// checks if loading a new game
-
-                    if (startingNewGame && allFull)
-                    {//If all slots are full, we can’t auto-save a new game without overwriting.
-                        PopupManager.Instance.ShowConfirmation(
-                            $"All save slots are full! Overwrite Slot {slotIndex + 1} to start a new game?",
-                            () =>
-                            {
-                                Debug.Log($"Overwrite confirmed for slot {slotIndex + 1}");
-                                GameManager.Instance.SetLastUsedSlot(slotIndex);//Sets this slot as the last used.
-                                GameManager.Instance.SetNewGame();//Flags that we’re starting a new game.
-
-                                // Set flags to auto-save after character selection scene loads
-                                GameManager.Instance.ShouldAutoSaveNewGameAfterLoad = true;
-                                GameManager.Instance.AutoSaveSlotIndex = slotIndex;
-
-                                GameManager.Instance.StartNewGameTransition(slotIndex);//Starts the transition to the new game scene.
-                            },
-                            null
-                        );
-                        return; // Skip normal save flow since we're overwriting
-                    }
-
-                    if (startingNewGame)
-                    {//Starting a new game with at least one empty slot
-                        int firstEmpty = GameManager.Instance.GetFirstEmptySlot();//chooses the first empty slot.
-                        
-                        //Sets flags to auto-save and starts the new game
-                        GameManager.Instance.SetLastUsedSlot(firstEmpty);
+                Debug.Log("A new game and all slots are full");
+                PopupManager.Instance.ShowConfirmation(
+                    $"All save slots are full! Overwrite Slot {slotIndex + 1} to start a new game?",
+                    () =>
+                    {
+                        GameManager.Instance.SetLastUsedSlot(slotIndex);
                         GameManager.Instance.SetNewGame();
-
                         GameManager.Instance.ShouldAutoSaveNewGameAfterLoad = true;
-                        GameManager.Instance.AutoSaveSlotIndex = firstEmpty;
-
+                        GameManager.Instance.AutoSaveSlotIndex = slotIndex;
                         GameManager.Instance.StartNewGameTransition(slotIndex);
-                        return;
-                    }
-
-                    // Normal save flow (not a new game)
-                    int dialogueIndex = DialogueManager.Instance != null ? DialogueManager.Instance.GetCurrentLine() : 0;
-                    /*Gets the current dialogue line index so that the save can restore dialogue progress later.
-                     Defaults to 0 if no dialogue manager exists.*/
-                    if (GameManager.Instance.SaveExists(slotIndex))
-                    {//If the slot is occupied:
-                        PopupManager.Instance.ShowConfirmation(
-                            $"Slot {slotIndex + 1} already has a save. Overwrite?",
-                            () =>
-                            {
-                                GameManager.Instance.SaveGame(slotIndex, dialogueIndex);
-                                RefreshUI();//On confirm, save the game and refresh the UI.
-                            },
-                            () => { RefreshUI(); }//On cancel, just refresh the UI to reflect no changes
-                        );
-                    }
-                    else
-                    {
-                        GameManager.Instance.SaveGame(slotIndex, dialogueIndex);
-                        RefreshUI();
-                    }
-                }
-                else
-                {
-                    // Load mode
-                    if (!GameManager.Instance.SaveExists(slotIndex))
-                    {
-                        PopupManager.Instance.ShowMessage($"Slot {slotIndex + 1} is empty.");
-                        return;
-                    }
-                    PopupManager.Instance.ShowConfirmation(
-                        $"Load from slot {slotIndex + 1}? Current progress will be lost.",
-                        () => { StartCoroutine(LoadAndRestore(slotIndex)); },//calls LoadAndRestore(slotIndex) to load the game and restore state
-                        () => { }
-                    );
-                }
+                    },
+                    null
+                );
+                return;
             }
-     
+
+            // Case 2: Starting new game with at least one empty slot
+            if (startingNewGame)
+            {
+                Debug.Log("Starting new game with at least one empty slot");
+                int firstEmpty = GameManager.Instance.GetFirstEmptySlot();
+                GameManager.Instance.SetLastUsedSlot(firstEmpty);
+                GameManager.Instance.SetNewGame();
+                GameManager.Instance.ShouldAutoSaveNewGameAfterLoad = true;
+                GameManager.Instance.AutoSaveSlotIndex = firstEmpty;
+                GameManager.Instance.StartNewGameTransition(firstEmpty);
+                return;
+            }*/
+
+            // Case 3: Regular manual save
+            if (GameManager.Instance.SaveExists(slotIndex))
+            {
+                Debug.Log("Regular manual save");
+                PopupManager.Instance.ShowConfirmation(
+                    $"Slot {slotIndex + 1} already has a save. Overwrite?",
+                    () =>
+                    {
+                        GameManager.Instance.SaveGame(slotIndex);
+                        RefreshUI();
+                    },
+                    () => { RefreshUI(); }
+                );
+            }
+            else
+            {
+                GameManager.Instance.SaveGame(slotIndex);
+                RefreshUI();
+            }
+        }
+        else
+        {
+            // --- LOAD MODE ---
+            if (!GameManager.Instance.SaveExists(slotIndex))
+            {
+                PopupManager.Instance.ShowMessage($"Slot {slotIndex + 1} is empty.");
+                return;
+            }
+
+            PopupManager.Instance.ShowConfirmation(
+                $"Load from slot {slotIndex + 1}? Current progress will be lost.",
+                () => { StartCoroutine(LoadAndRestore(slotIndex)); },
+                null
+            );
+        }
+    }
+
             private void OnResetClicked(int slotIndex)
             {
                 // Capture the state of the flags before the slot is reset
