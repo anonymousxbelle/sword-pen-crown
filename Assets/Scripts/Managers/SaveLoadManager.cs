@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,49 +11,67 @@ namespace Managers
     public class SaveLoadManager : MonoBehaviour
 
     {
+        public static SaveLoadManager Instance{private set; get;}
         [Header("UI References")] [SerializeField]
         private Button[] slotButtons;
+
         [SerializeField] private Button[] resetButtons;
         [SerializeField] private Button closeButton;
         [SerializeField] private TMP_Text[] slotLabels;
         [SerializeField] private TextAsset inkFile;
-        
+
         private bool isSaveMode;
+
+        void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            Instance = this;
+        }
+
         public void Initialize(bool saveMode)
-        { //Sets up everything based on whether it’s Save or Load mode.
+        {
+            //Sets up everything based on whether it’s Save or Load mode.
             Debug.Log($"SaveLoadManager: Initialized in {(saveMode ? "SAVE" : "LOAD")} mode.");
             isSaveMode = saveMode;
             SetupButtons(); //attaches listeners
 
-           
+
             if (GameManager.Instance.OpenedFromMainMenu && isSaveMode)
-            { //if opened from main menu 
+            {
+                //if opened from main menu 
                 int firstEmpty = GameManager.Instance.GetFirstEmptySlot();
                 bool resetRequired = GameManager.Instance.IsResetForNewGameRequired;
                 //Gets the first empty slot and checks if a reset is required
                 if (resetRequired && firstEmpty == -1)
-                {//Resetrequired:(if we're loading a new game and all slots are full).
+                {
+                    //Resetrequired:(if we're loading a new game and all slots are full).
                     for (int i = 0; i < slotButtons.Length; i++)
                     {
-                        slotButtons[i].interactable = false;  // disable save/load slots selection
+                        slotButtons[i].interactable = false; // disable save/load slots selection
                         if (resetButtons.Length > i && resetButtons[i] != null)
                         {
                             resetButtons[i].interactable = true; // ensure reset buttons are enabled
                         }
                     }
-                } 
+                }
                 else if (GameManager.Instance.IsNewGame && firstEmpty != -1)
-                {//There’s space to save a new game.
+                {
+                    //There’s space to save a new game.
                     for (int i = 0; i < slotButtons.Length; i++)
                     {
                         // Only empty slots should be interactable for a new game save
                         slotButtons[i].interactable = !GameManager.Instance.SaveExists(i);
                     }
-                }//UNSURE THIS MATTERS BECAUSE NEW GAME AUTO-SAVES IN FIRST EMPTY SLOT
+                } //UNSURE THIS MATTERS BECAUSE NEW GAME AUTO-SAVES IN FIRST EMPTY SLOT
             }
-           
+
             else
-            { //Not from main menu
+            {
+                //Not from main menu
                 for (int i = 0; i < slotButtons.Length; i++)
                 {
                     // In Load mode, only saved slots are interactable
@@ -60,45 +79,54 @@ namespace Managers
                     slotButtons[i].interactable = isSaveMode || GameManager.Instance.SaveExists(i);
                 }
             }
-            RefreshUI();//Updates text and button visuals.
+
+            RefreshUI(); //Updates text and button visuals.
         }
-        
+
         private void SetupButtons()
         {
             Debug.Log($"SaveLoadManager: SetupButtons called. Slot count: {slotButtons.Length}");
             for (int i = 0; i < slotButtons.Length; i++)
-            {//Loops through each slot.
-                int index = i;//for lambda
-                slotButtons[i].onClick.RemoveAllListeners();//Clears old listeners (avoiding duplicates).
-                slotButtons[i].onClick.AddListener(() => OnSlotClicked(index)); //Adds a new listener that calls OnSlotClicked(index).
+            {
+                //Loops through each slot.
+                int index = i; //for lambda
+                slotButtons[i].onClick.RemoveAllListeners(); //Clears old listeners (avoiding duplicates).
+                slotButtons[i].onClick
+                    .AddListener(() => OnSlotClicked(index)); //Adds a new listener that calls OnSlotClicked(index).
                 Debug.Log($"SaveLoadManager: Added listener to Slot {i + 1}.");
-                
+
                 if (resetButtons.Length > i && resetButtons[i] != null)
-                {//Attaches reset functionality per slot.
+                {
+                    //Attaches reset functionality per slot.
                     resetButtons[i].onClick.RemoveAllListeners();
                     resetButtons[i].onClick.AddListener(() => OnResetClicked(index));
                 }
 
             }
+
             if (closeButton != null)
-            {//Makes the close button exit the Save/Load scene.
+            {
+                //Makes the close button exit the Save/Load scene.
                 closeButton.onClick.RemoveAllListeners();
                 closeButton.onClick.AddListener(CloseScene);
 
             }
 
         }
+
         private void RefreshUI()
         {
             for (int i = 0; i < slotButtons.Length; i++)
             {
                 if (slotLabels != null && slotLabels.Length > i && slotLabels[i] != null)
                 {
-                    slotLabels[i].text = GameManager.Instance.GetSlotLabel(i);//Updates slot text with current data.
+                    slotLabels[i].text = GameManager.Instance.GetSlotLabel(i); //Updates slot text with current data.
                 }
+
                 if (resetButtons.Length > i && resetButtons[i] != null)
                 {
-                    resetButtons[i].gameObject.SetActive(GameManager.Instance.SaveExists(i));//Only show reset buttons if that slot has data.
+                    resetButtons[i].gameObject
+                        .SetActive(GameManager.Instance.SaveExists(i)); //Only show reset buttons if that slot has data.
                 }
             }
         }
@@ -167,112 +195,114 @@ namespace Managers
 
 
         private void OnSlotClicked(int slotIndex)
-    {
-        if (isSaveMode)
         {
-            // --- SAVE MODE ---
-            
-            //PUT IN NEW GAME LOGIC
-            /*bool allFull = GameManager.Instance.GetFirstEmptySlot() == -1;
-            bool startingNewGame = GameManager.Instance.IsNewGame;
-
-            // Case 1: All slots full, starting new game (overwrite prompt)
-            if (startingNewGame && allFull)
+            if (isSaveMode)
             {
-                Debug.Log("A new game and all slots are full");
-                PopupManager.Instance.ShowConfirmation(
-                    $"All save slots are full! Overwrite Slot {slotIndex + 1} to start a new game?",
-                    () =>
-                    {
-                        GameManager.Instance.SetLastUsedSlot(slotIndex);
-                        GameManager.Instance.SetNewGame();
-                        GameManager.Instance.ShouldAutoSaveNewGameAfterLoad = true;
-                        GameManager.Instance.AutoSaveSlotIndex = slotIndex;
-                        GameManager.Instance.StartNewGameTransition(slotIndex);
-                    },
-                    null
-                );
-                return;
-            }
+                // --- SAVE MODE ---
 
-            // Case 2: Starting new game with at least one empty slot
-            if (startingNewGame)
-            {
-                Debug.Log("Starting new game with at least one empty slot");
-                int firstEmpty = GameManager.Instance.GetFirstEmptySlot();
-                GameManager.Instance.SetLastUsedSlot(firstEmpty);
-                GameManager.Instance.SetNewGame();
-                GameManager.Instance.ShouldAutoSaveNewGameAfterLoad = true;
-                GameManager.Instance.AutoSaveSlotIndex = firstEmpty;
-                GameManager.Instance.StartNewGameTransition(firstEmpty);
-                return;
-            }*/
+                //PUT IN NEW GAME LOGIC
+                /*bool allFull = GameManager.Instance.GetFirstEmptySlot() == -1;
+                bool startingNewGame = GameManager.Instance.IsNewGame;
 
-            // Case 3: Regular manual save
-            if (GameManager.Instance.SaveExists(slotIndex))
-            {
-                Debug.Log("Regular manual save");
-                PopupManager.Instance.ShowConfirmation(
-                    $"Slot {slotIndex + 1} already has a save. Overwrite?",
-                    () =>
-                    {
-                        GameManager.Instance.SaveGame(slotIndex);
-                        RefreshUI();
-                    },
-                    () => { RefreshUI(); }
-                );
+                // Case 1: All slots full, starting new game (overwrite prompt)
+                if (startingNewGame && allFull)
+                {
+                    Debug.Log("A new game and all slots are full");
+                    PopupManager.Instance.ShowConfirmation(
+                        $"All save slots are full! Overwrite Slot {slotIndex + 1} to start a new game?",
+                        () =>
+                        {
+                            GameManager.Instance.SetLastUsedSlot(slotIndex);
+                            GameManager.Instance.SetNewGame();
+                            GameManager.Instance.ShouldAutoSaveNewGameAfterLoad = true;
+                            GameManager.Instance.AutoSaveSlotIndex = slotIndex;
+                            GameManager.Instance.StartNewGameTransition(slotIndex);
+                        },
+                        null
+                    );
+                    return;
+                }
+
+                // Case 2: Starting new game with at least one empty slot
+                if (startingNewGame)
+                {
+                    Debug.Log("Starting new game with at least one empty slot");
+                    int firstEmpty = GameManager.Instance.GetFirstEmptySlot();
+                    GameManager.Instance.SetLastUsedSlot(firstEmpty);
+                    GameManager.Instance.SetNewGame();
+                    GameManager.Instance.ShouldAutoSaveNewGameAfterLoad = true;
+                    GameManager.Instance.AutoSaveSlotIndex = firstEmpty;
+                    GameManager.Instance.StartNewGameTransition(firstEmpty);
+                    return;
+                }*/
+
+                // Case 3: Regular manual save
+                if (GameManager.Instance.SaveExists(slotIndex))
+                {
+                    Debug.Log("Regular manual save");
+                    PopupManager.Instance.ShowConfirmation(
+                        $"Slot {slotIndex + 1} already has a save. Overwrite?",
+                        () =>
+                        {
+                            GameManager.Instance.SaveGame(slotIndex);
+                            RefreshUI();
+                        },
+                        () => { RefreshUI(); }
+                    );
+                }
+                else
+                {
+                    GameManager.Instance.SaveGame(slotIndex);
+                    RefreshUI();
+                }
             }
             else
             {
-                GameManager.Instance.SaveGame(slotIndex);
-                RefreshUI();
-            }
-        }
-        else
-        {
-            // --- LOAD MODE ---
-            if (!GameManager.Instance.SaveExists(slotIndex))
-            {
-                PopupManager.Instance.ShowMessage($"Slot {slotIndex + 1} is empty.");
-                return;
-            }
-
-            PopupManager.Instance.ShowConfirmation(
-                $"Load from slot {slotIndex + 1}? Current progress will be lost.",
-                () => { StartCoroutine(LoadAndRestore(slotIndex)); },
-                null
-            );
-        }
-    }
-
-            private void OnResetClicked(int slotIndex)
-            {
-                // Capture the state of the flags before the slot is reset
-                bool wasOpenedFromMainMenu = GameManager.Instance.OpenedFromMainMenu;
-                bool wasResetRequired = GameManager.Instance.IsResetForNewGameRequired;
+                // --- LOAD MODE ---
+                if (!GameManager.Instance.SaveExists(slotIndex))
+                {
+                    PopupManager.Instance.ShowMessage($"Slot {slotIndex + 1} is empty.");
+                    return;
+                }
 
                 PopupManager.Instance.ShowConfirmation(
-                    $"Reset slot {slotIndex + 1}? This cannot be undone.",
-                    () => 
-                    {
-                        GameManager.Instance.ResetSlot(slotIndex);
-                        RefreshUI();
-                        
-                        if (wasOpenedFromMainMenu && wasResetRequired)
-                        {
-                            // If we were in main menu new game reset mode, start the new game transition automatically.
-                            GameManager.Instance.StartNewGameTransition(slotIndex);
-                            return; 
-                        }
-                    },
-                    () => { RefreshUI(); }
+                    $"Load from slot {slotIndex + 1}? Current progress will be lost.",
+                    () => { StartCoroutine(LoadAndRestore(slotIndex)); },
+                    null
                 );
             }
-            
+        }
+
+
+        private void OnResetClicked(int slotIndex)
+        {
+            // Capture the state of the flags before the slot is reset
+            bool wasOpenedFromMainMenu = GameManager.Instance.OpenedFromMainMenu;
+            bool wasResetRequired = GameManager.Instance.IsResetForNewGameRequired;
+
+            PopupManager.Instance.ShowConfirmation(
+                $"Reset slot {slotIndex + 1}? This cannot be undone.",
+                () =>
+                {
+                    GameManager.Instance.ResetSlot(slotIndex);
+                    RefreshUI();
+
+                    if (wasOpenedFromMainMenu && wasResetRequired)
+                    {
+                        // If we were in main menu new game reset mode, start the new game transition automatically.
+                        GameManager.Instance.StartNewGameTransition(slotIndex);
+                        return;
+                    }
+                },
+                () => { RefreshUI(); }
+            );
+        }
+
         private void CloseScene()
         {
             if (GameManager.Instance.OpenedFromPauseMenu)
-            { //if pause menu
+            {
+                //if pause menu
                 PauseMenu pauseMenu = FindAnyObjectByType<PauseMenu>();
                 if (pauseMenu != null)
                 {
@@ -280,24 +310,39 @@ namespace Managers
                 }
             }
             else if (GameManager.Instance.OpenedFromMainMenu)
-            { //if main menu
+            {
+                //if main menu
                 MainMenu mainMenu = FindAnyObjectByType<MainMenu>();
                 if (mainMenu != null)
                 {
-                    mainMenu.SetMenuVisible(true);//show main menu
+                    //  mainMenu.SetMenuVisible(true);//show main menu
                 }
             }
+
             GameManager.Instance.ClearSaveLoadSource();
-            SceneManager.UnloadSceneAsync("SaveLoadScene");//unload scene
+            SceneManager.UnloadSceneAsync("SaveLoadScene"); //unload scene
             if (DialogueManager.Instance != null)
             {
-                DialogueManager.Instance.RefreshUI();// refresh dialogue
+                DialogueManager.Instance.RefreshUI(); // refresh dialogue
             }
         }
-        
+
         public void HighlightSlotForOverwrite(int index)
-        {//Marks a slot as the last used. MIGHT IMPLEMENT VISUAL UI HIGHLIGHTING
+        {
+            //Marks a slot as the last used. MIGHT IMPLEMENT VISUAL UI HIGHLIGHTING
             GameManager.Instance.SetLastUsedSlot(index);
+        }
+
+        public bool AnyLoadGameExists(int numberOfSlots)
+        {
+            for (int i = 0; i < numberOfSlots; i++)
+            {
+                if (GameManager.Instance.SaveExists(i))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
