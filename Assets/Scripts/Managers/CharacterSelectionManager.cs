@@ -22,15 +22,14 @@ public class CharacterSelectionManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Make it persistent
+            
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-    
-        gameObject.SetActive(false);
+        
     
         if (swordButton != null)
             swordButton.onClick.AddListener(() => OnCharacterChosen(0));
@@ -59,7 +58,9 @@ public class CharacterSelectionManager : MonoBehaviour
         
         swordButton.GetComponentInChildren<TMP_Text>().text = _story.currentChoices[0].text.Trim();
         penButton.GetComponentInChildren<TMP_Text>().text = _story.currentChoices[1].text.Trim();
+        penButton.interactable = false;
         crownButton.GetComponentInChildren<TMP_Text>().text = _story.currentChoices[2].text.Trim();
+        crownButton.interactable = false;
 
     }
 

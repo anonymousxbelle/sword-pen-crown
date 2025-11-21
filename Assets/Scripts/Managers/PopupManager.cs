@@ -27,7 +27,6 @@ namespace Managers
             return;
          }
          Instance = this;
-         DontDestroyOnLoad(gameObject);
          
          if (popupRoot != null) popupRoot.SetActive(false); //Ensures the popup is hidden at game start.
          

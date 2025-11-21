@@ -50,7 +50,6 @@
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Bootstrapper.cs" />
     <Compile Include="Assets\Scripts\Managers\CharacterSelectionManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\StoryManager.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Managers\PopupManager.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />

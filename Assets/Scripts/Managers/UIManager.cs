@@ -16,23 +16,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject mainMenuCanvas;
     [SerializeField] private Button loadButton;
     
-    
     [Header("Pause Menu")] 
-    [SerializeField] private CanvasGroup pauseMenuCanvas;
-    [SerializeField] private Button resumeButton;
+    [SerializeField] private GameObject pauseMenuCanvas;
     [SerializeField] private Button saveButton;
-    [SerializeField] private Button mainMenuButton;
-    [SerializeField] private Button showPlaytimeButton;
-    [SerializeField] private TMP_Text playtimeText;
     
     [Header("Load Panel")] 
     [SerializeField] private GameObject loadCanvas;
-    [SerializeField] private Button[] slotButtons;
-    [SerializeField] private Button[] resetButtons;
-    [SerializeField] private Button closeButton;
-    [SerializeField] private TMP_Text[] slotLabels;
-    [SerializeField] private TextAsset inkFile;
+    [SerializeField] private TMP_Text[] loadLabels;
     
+    [Header("Save Panel")]
+    [SerializeField] private GameObject saveCanvas;
+    [SerializeField] private TMP_Text[] saveLabels;
     
     [Header("Pop ups")] 
     [SerializeField] private CanvasGroup popupCanvas;
@@ -67,7 +61,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         SwitchScreen(titleScreen);
-        if (!SaveLoadManager.Instance.AnyLoadGameExists(slotButtons.Length))
+        if (!SaveLoadManager.Instance.AnyLoadGameExists(loadLabels.Length))
         {
             loadButton.interactable = false;
         }
@@ -83,7 +77,7 @@ public class UIManager : MonoBehaviour
         activeScreen = newScreen;
     }
 
-    void GoToMainMenu()
+    public void GoToMainMenu()
     {
         SwitchScreen(mainMenuCanvas);
     }
@@ -96,6 +90,41 @@ public class UIManager : MonoBehaviour
     public void GoToLoadScreen()
     {
         SwitchScreen(loadCanvas);
+        PopulateLabels();
+    }
+
+    public void GoToSaveScreen()
+    {
+        SwitchScreen(saveCanvas);
+        PopulateLabels();
+    }
+
+    public void ShowPauseMenu()
+    {
+        if (activeScreen == dialogueCanvas)
+        {
+            pauseMenuCanvas.SetActive(true);
+            saveButton.interactable = GameManager.Instance.CanSave;
+        }
+    }
+
+    public void HidePauseMenu()
+    {
+        pauseMenuCanvas.SetActive(false);
+    }
+
+    public bool CanPause()
+    {
+        return activeScreen == dialogueCanvas;
+    }
+
+    public void PopulateLabels()
+    {
+        for (int i = 0; i < loadLabels.Length; i++)
+        {
+            loadLabels[i].text = GameManager.Instance.GetSlotLabel(i);
+            saveLabels[i].text = loadLabels[i].text;
+        }
     }
 
     private void Update()

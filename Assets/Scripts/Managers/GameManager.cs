@@ -25,7 +25,6 @@ namespace Managers
         public string PlayerChoice;
         public float playTimeSeconds;
         public bool IsPaused { get; private set; }
-        public GameSave currentSave;
         public int LastUsedSlotIndex { get; private set; } = -1;
 
         // Flags for Save/Load Scene Source
@@ -46,15 +45,13 @@ namespace Managers
         private bool _canSave = false;
         public void SetCanSave(bool value) => _canSave = value;
 
-        public bool CanSave() => _canSave;
+        public bool CanSave => _canSave;
 
         private void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
-                SceneManager.sceneLoaded += OnSceneLoaded;
             }
             else
             {
@@ -62,56 +59,8 @@ namespace Managers
                 return;
             }
         }
-
-        public void SetSaveLoadSource(bool fromPauseMenu, bool fromMainMenu, bool isSaveMode)
-        {
-            OpenedFromPauseMenu = fromPauseMenu;
-            OpenedFromMainMenu = fromMainMenu;
-            ShouldOpenSaveLoad = true;
-            IsSaveModeForSaveLoad = isSaveMode;
-        }
-
-        public void ClearSaveLoadSource()
-        {
-            OpenedFromPauseMenu = false;
-            OpenedFromMainMenu = false;
-            ShouldOpenSaveLoad = false;
-            IsSaveModeForSaveLoad = false;
-
-            IsResetForNewGameRequired = false;
-            ShouldAutoSaveNewGameAfterLoad = false;
-            AutoSaveSlotIndex = -1;
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            Debug.Log($"OnSceneLoaded: {scene.name}, ShouldAutoSaveNewGameAfterLoad={ShouldAutoSaveNewGameAfterLoad}, AutoSaveSlotIndex={AutoSaveSlotIndex}");
-
-            // ONLY restore if we actually have a save to restore AND it's not a new game
-            // Don't restore just because currentSave exists - only when loading from SaveLoadManager
-            // We'll use a flag for this
-
-            // Auto-save new game on StoryScene after overwrite flow
-            // Force close any popup
-            PopupManager.Instance?.ForceClosePopup();
-
-            // Initialize SaveLoadManager if SaveLoadScene loaded
-            if (scene.name == "SaveLoadScene" && mode == LoadSceneMode.Additive && ShouldOpenSaveLoad)
-            {
-                Debug.Log("GameManager: SaveLoadScene loaded. Attempting to initialize SaveLoadManager.");
-                SaveLoadManager manager = FindAnyObjectByType<SaveLoadManager>();
-                if (manager != null)
-                {
-                    Debug.Log("GameManager: Found SaveLoadManager! Initializing...");
-                    manager.Initialize(IsSaveModeForSaveLoad);
-                }
-                else
-                {
-                    Debug.LogError("GameManager: Failed to find SaveLoadManager in the loaded scene!");
-                }
-            }
-        }
-
+        
+    
         /*private IEnumerator RestoreGameStateWhenReady()
         {
             // Wait for DialogueManager to exist and be ready
@@ -156,7 +105,6 @@ namespace Managers
 
         public void SetNewGame()
         {
-            currentSave = null;
             IsNewGame = true;
             
         }
@@ -245,7 +193,6 @@ namespace Managers
             }
 
             SetLastUsedSlot(slotIndex);
-            currentSave = save;
         }
 
 
@@ -264,7 +211,6 @@ namespace Managers
             {
                 string json = File.ReadAllText(path);
                 GameSave save = JsonUtility.FromJson<GameSave>(json);
-                currentSave = save;
                 SetLastUsedSlot(slotIndex);
                 return save;
             }
@@ -391,11 +337,6 @@ namespace Managers
             SceneManager.LoadScene("StoryScene", LoadSceneMode.Single);
         }
         
-        private void OnDestroy()
-        {
-            if (Instance == this) 
-                SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
         
         /*private IEnumerator RestoreGameStateWhenReady()
         {

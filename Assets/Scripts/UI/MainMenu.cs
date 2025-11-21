@@ -18,9 +18,7 @@ namespace UI
         public void StartNewGame()
         {
             UIManager.Instance.GoToDialogueScreen();
-            DialogueManager.Instance.LoadInkStory(DialogueManager.Instance.InkJsonAsset);
-            
-            GameManager.Instance.ClearSaveLoadSource();
+            DialogueManager.Instance.LoadInkStory();
         }
         
         public void LoadScene()

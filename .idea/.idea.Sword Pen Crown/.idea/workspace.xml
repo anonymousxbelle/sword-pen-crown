@@ -6,10 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="85f4f8ec-a63a-431b-9e24-3706d78ec85c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Sword Pen Crown/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sword Pen Crown/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/StoryScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StoryScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/CharacterSelectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/CharacterSelectionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/ChoiceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/ChoiceManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/PopupManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/PopupManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/SaveLoadManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/SaveLoadManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/StoryManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/StoryManager.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,10 +59,12 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/SaveLoadManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/SaveLoadManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/SaveLoadManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Recovery/0 (2).unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Recovery/0.unity" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/_Recovery/0.unity" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -177,7 +188,9 @@
       <workItem from="1763327157669" duration="248000" />
       <workItem from="1763441811271" duration="2360000" />
       <workItem from="1763666543685" duration="7288000" />
-      <workItem from="1763673968066" duration="2059000" />
+      <workItem from="1763673968066" duration="8914000" />
+      <workItem from="1763757244874" duration="6000" />
+      <workItem from="1763757254307" duration="5056000" />
     </task>
     <task id="LOCAL-00001" summary="feat(refactor): complete save/load system overhaul and content setup&#10;&#10;This commit finalizes the save/load system stability, dialogue state restoration, &#10;and prepares the project for main narrative content.&#10;&#10;CORE FIXES &amp; REFACTORING:&#10;- Implement seamless new game start flow: when all save slots are full, the player &#10;  is now prompted to reset one, and upon confirmation, is automatically taken to &#10;  the Character Selection scene. This was achieved by moving the scene loading &#10;  coroutine to the persistent GameManager, eliminating previous race conditions &#10;  and blank screen issues.&#10;- Fix exact line loading: DialogueManager now restores the precise dialogue line on load.&#10;- Fix dialogue inactivity after load by ensuring DialogueManager is initialized before restoration.&#10;- Fix overwrite logic causing Main Menu buttons to become unresponsive after overwrite/reset.&#10;- Fix auto-save on reset: Refactored flag cleanup to occur after new scene load and save, &#10;  ensuring new games are saved automatically.&#10;- Add UI/UX validation in PauseMenu.cs to prevent saving during CharacterSelectionScene.&#10;- Update Playtime to count total playtime instead of slot-specific playtime.&#10;- Remove redundant SaveLoadPanel.cs after merging its functionality into SaveLoadManager.cs.&#10;&#10;CONTENT PROGRESS:&#10;- Finalized Character Selection Scene logic.&#10;- Added placeholder scenes for upcoming prologue sequences.">
       <option name="closed" value="true" />
@@ -219,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763670649703</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Main Menu done(load not tested)">
+      <option name="closed" value="true" />
+      <created>1763676085694</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1763676085694</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +272,8 @@
     <MESSAGE value="Add character sprite support to DialogueManager" />
     <MESSAGE value="feat(story): complete SoldierPrologue and integrate post-dialogue choice sequence; remove choice handling from DialogueManager and move logic fully to ChoiceManager; update ChoiceManager to hide by default and add heading support for cleaner flow" />
     <MESSAGE value="pre-tade intervention" />
-    <option name="LAST_COMMIT_MESSAGE" value="pre-tade intervention" />
+    <MESSAGE value="Main Menu done(load not tested)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Main Menu done(load not tested)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
