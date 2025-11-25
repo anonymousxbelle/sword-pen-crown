@@ -70,20 +70,18 @@ namespace UI
         }
         
         
-        private void ShowPlaytime()
+        public void ShowPlaytime()
         {
             if (playtimeText == null) return;
             
             if (isShowingPlaytime)
             {
-                // Toggle back to default label
-                playtimeText.text = "Show Playtime";
+                playtimeText.text = "Playtime";
                 isShowingPlaytime = false;
             }
             else
             {
-                // Show actual playtime
-                playtimeText.text = $"Playtime: {GameManager.Instance.GetFormattedPlaytime()}";
+                playtimeText.text = $"{GameManager.Instance.GetFormattedPlaytime()}";
                 isShowingPlaytime = true;
             }
         }

@@ -3,11 +3,11 @@
 // ============================================
 VAR show_character_selection = false 
 VAR player_choice = ""
-VAR kingdom_name = "FILLER"
+VAR kingdom_name = "Ijoba"
 
-VAR soldier_name = "SWORD"
-VAR king_name = "CROWN"
-VAR poet_name = "PEN"
+VAR soldier_name = "Jagun"
+VAR king_name = "Oba"
+VAR poet_name = "Akewi"
 
 VAR soldier_choice_1 = ""
 VAR trust_king = false

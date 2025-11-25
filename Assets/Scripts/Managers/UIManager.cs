@@ -1,4 +1,3 @@
-using System;
 using Managers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,32 +22,28 @@ public class UIManager : MonoBehaviour
     [Header("Load Panel")] 
     [SerializeField] private GameObject loadCanvas;
     [SerializeField] private TMP_Text[] loadLabels;
+    [SerializeField] private TMP_Text[] loadSlotLastPlayed;
+    [SerializeField] private GameObject[] activeLoadOutline;
+    [SerializeField] private GameObject[] inactiveLoadOutline;
+    [SerializeField] private GameObject[] loadSlotSceneOutline;
     
     [Header("Save Panel")]
     [SerializeField] private GameObject saveCanvas;
     [SerializeField] private TMP_Text[] saveLabels;
-    
-    [Header("Pop ups")] 
-    [SerializeField] private CanvasGroup popupCanvas;
-    [SerializeField] private TMP_Text messageText;
-    [SerializeField] private Button confirmButton;
-    [SerializeField] private Button cancelButton;
+    [SerializeField] private TMP_Text[] saveSlotLastPlayed;
+    [SerializeField] private GameObject[] activeSaveOutline;
+    [SerializeField] private GameObject[] inactiveSaveOutline;
+    [SerializeField] private GameObject[] saveSlotSceneOutline;
     
     [Header("Dialogue")] 
     [SerializeField] private GameObject dialogueCanvas;
-    [SerializeField] private TMP_Text speakerText;
-    [SerializeField] public TMP_Text dialogueText;
-    [SerializeField] private Image characterImage;
-    [SerializeField] private Button clickerButton;
+    [SerializeField] private GameObject speakerBox;
     
     [Header("Character Selection")] 
     [SerializeField] private GameObject characterSelectionPanel;
     
-    [Header("Choices")] 
-    [SerializeField] private GameObject choiceCanvas;
-    [SerializeField] private TMP_Text headingText;
-    [SerializeField] private Button[] choiceButtons;
-
+    [Header("Choices")]
+    [SerializeField] private GameObject choicePanel;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -87,16 +82,39 @@ public class UIManager : MonoBehaviour
        SwitchScreen(dialogueCanvas);
     }
 
+    public void ShowSpeaker()
+    {
+            speakerBox.SetActive(true);
+    }
+    public void HideSpeaker()
+    {
+        speakerBox.SetActive(false);
+    }
+
+
     public void GoToLoadScreen()
     {
         SwitchScreen(loadCanvas);
         PopulateLabels();
+        ChooseLoadSlotOutline();
     }
 
     public void GoToSaveScreen()
     {
         SwitchScreen(saveCanvas);
         PopulateLabels();
+        ChooseSaveSlotOutline();
+        
+    }
+    
+    public void GoToCharacterSelectionScreen()
+    {
+        SwitchScreen(characterSelectionPanel);
+    }
+
+    public void GoToChoiceScreen()
+    {
+        SwitchScreen(choicePanel);
     }
 
     public void ShowPauseMenu()
@@ -104,7 +122,7 @@ public class UIManager : MonoBehaviour
         if (activeScreen == dialogueCanvas)
         {
             pauseMenuCanvas.SetActive(true);
-            saveButton.interactable = GameManager.Instance.CanSave;
+            saveButton.interactable = GameManager.Instance.CanSave();
         }
     }
 
@@ -124,7 +142,47 @@ public class UIManager : MonoBehaviour
         {
             loadLabels[i].text = GameManager.Instance.GetSlotLabel(i);
             saveLabels[i].text = loadLabels[i].text;
+            loadSlotLastPlayed[i].text =  GameManager.Instance.GetLastPlayed(i);
+            saveSlotLastPlayed[i].text = loadSlotLastPlayed[i].text;
         }
+    }
+    public void ChooseLoadSlotOutline()
+    {
+        for(int i = 0; i < loadLabels.Length; i++)
+            if (loadLabels[i].text == "Empty")
+            {
+                activeLoadOutline[i].SetActive(false);
+                inactiveLoadOutline[i].SetActive(true);
+                loadSlotSceneOutline[i].SetActive(false);
+            }
+            else
+            {
+                activeLoadOutline[i].SetActive(true);
+                inactiveLoadOutline[i].SetActive(false);
+                loadSlotSceneOutline[i].SetActive(true);
+            }
+    }
+    
+    public void ChooseSaveSlotOutline()
+    {
+        for(int i = 0; i < loadLabels.Length; i++)
+            if (loadLabels[i].text == "Empty")
+            {
+                activeSaveOutline[i].SetActive(false);
+                inactiveSaveOutline[i].SetActive(true);
+                saveSlotSceneOutline[i].SetActive(false);
+            }
+            else
+            {
+                activeSaveOutline[i].SetActive(true);
+                inactiveSaveOutline[i].SetActive(false);
+                saveSlotSceneOutline[i].SetActive(true);
+            }
+    }
+
+    public string GetActiveScreen()
+    {
+        return activeScreen.name;
     }
 
     private void Update()

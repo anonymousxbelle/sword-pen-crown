@@ -1,6 +1,8 @@
 // ============================================
 // SOLDIER PATH - INCLUDES
 // ============================================
+
+
 //CHAPTER 1
 INCLUDE soldier/soldier_chapter1/shared_scenes/soldier_prologue.ink
 INCLUDE soldier/soldier_chapter1/soldier_concattack.ink

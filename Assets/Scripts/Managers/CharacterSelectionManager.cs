@@ -27,44 +27,24 @@ public class CharacterSelectionManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            return;
         }
-        
+    }
     
-        if (swordButton != null)
-            swordButton.onClick.AddListener(() => OnCharacterChosen(0));
-        if (penButton != null)
-            penButton.onClick.AddListener(() => OnCharacterChosen(1));
-        if (crownButton != null)
-            crownButton.onClick.AddListener(() => OnCharacterChosen(2));
-    }
-
-    private void Start()
-    {
-        if (characterSelectionPanel != null && characterSelectionPanel.activeSelf)
-        {
-            GameManager.Instance.SetCanSave(false);
-        }
-    }
-
-
-    // Called by DialogueManager when Ink reaches a character selection point
     public void ShowCharacterChoices(Story story)
     {
         _story = story;
-
+        
         if (headingText != null)
             headingText.text = "Choose Your Character";
         
-        swordButton.GetComponentInChildren<TMP_Text>().text = _story.currentChoices[0].text.Trim();
-        penButton.GetComponentInChildren<TMP_Text>().text = _story.currentChoices[1].text.Trim();
+        swordButton.GetComponentInChildren<TMP_Text>().text = _story.currentChoices[0].text;
+        penButton.GetComponentInChildren<TMP_Text>().text = _story.currentChoices[1].text;
         penButton.interactable = false;
-        crownButton.GetComponentInChildren<TMP_Text>().text = _story.currentChoices[2].text.Trim();
+        crownButton.GetComponentInChildren<TMP_Text>().text = _story.currentChoices[2].text;
         crownButton.interactable = false;
 
     }
-
-    // Called when the player clicks a character button
+    
     public void OnCharacterChosen(int index)
     {
         if (_story == null) return;
@@ -74,12 +54,11 @@ public class CharacterSelectionManager : MonoBehaviour
         if (_story.canContinue)
             _story.Continue();
         
-        characterSelectionPanel.SetActive(false);
+        UIManager.Instance.GoToDialogueScreen();
         
         DialogueManager.Instance.isCharacterSelection = false;
         
         GameManager.Instance.SetCanSave(true);
-        // Continue the story after a choice is made
         DialogueManager.Instance.DisplayNextInkLine();
     }
 }

@@ -86,11 +86,6 @@ namespace Managers
 
         public void LoadInkStory()
         {
-            if (inkJsonAsset == null)
-            {
-                Debug.LogError("Ink JSON asset not assigned!");
-                return;
-            }
 
             _inkStory = new Story(inkJsonAsset.text);
             _isDialogueActive = true;
@@ -205,7 +200,7 @@ namespace Managers
                             if (speakerText != null)
                             {
                                 speakerText.text = tagValue;
-                                speakerText.gameObject.SetActive(true);
+                                UIManager.Instance.ShowSpeaker();
                             }
 
                             break;
@@ -226,26 +221,13 @@ namespace Managers
                             }
 
                             break;
-
-                        case "hide_speaker":
-                            if (speakerText != null)
-                                speakerText.gameObject.SetActive(false);
-                            break;
-
-                        case "hide_image":
-                            if (characterImage != null)
-                                characterImage.gameObject.SetActive(false);
-                            break;
                     }
                 }
             }
             else
             {
                 // No tags - hide speaker and image
-                if (speakerText != null)
-                    speakerText.gameObject.SetActive(false);
-                if (characterImage != null)
-                    characterImage.gameObject.SetActive(false);
+                UIManager.Instance.HideSpeaker();
             }
         }
 
@@ -425,7 +407,13 @@ namespace Managers
             return null;
         }
 
-   
+        /// <summary>
+        /// Check if currently using Ink (vs legacy dialogue)
+        /// </summary>
+        public bool IsUsingInk()
+        {
+            return _inkStory != null;
+        }
 
         public void RefreshUI()
         {

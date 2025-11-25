@@ -25,6 +25,7 @@ namespace Managers
         public string PlayerChoice;
         public float playTimeSeconds;
         public bool IsPaused { get; private set; }
+        public GameSave currentSave;
         public int LastUsedSlotIndex { get; private set; } = -1;
 
         // Flags for Save/Load Scene Source
@@ -40,18 +41,19 @@ namespace Managers
         public bool IsSaveModeForSaveLoad { get; private set; } = false;
 
         public bool ShouldAutoSaveNewGameAfterLoad { get; set; } = false;
-        public int AutoSaveSlotIndex { get; set; } = -1; 
-        
+        public int AutoSaveSlotIndex { get; set; } = -1;
+
         private bool _canSave = false;
         public void SetCanSave(bool value) => _canSave = value;
 
-        public bool CanSave => _canSave;
+        public bool CanSave() => _canSave;
 
         private void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
+                SceneManager.sceneLoaded += OnSceneLoaded;
             }
             else
             {
@@ -59,8 +61,57 @@ namespace Managers
                 return;
             }
         }
-        
-    
+
+        public void SetSaveLoadSource(bool fromPauseMenu, bool fromMainMenu, bool isSaveMode)
+        {
+            OpenedFromPauseMenu = fromPauseMenu;
+            OpenedFromMainMenu = fromMainMenu;
+            ShouldOpenSaveLoad = true;
+            IsSaveModeForSaveLoad = isSaveMode;
+        }
+
+        public void ClearSaveLoadSource()
+        {
+            OpenedFromPauseMenu = false;
+            OpenedFromMainMenu = false;
+            ShouldOpenSaveLoad = false;
+            IsSaveModeForSaveLoad = false;
+
+            IsResetForNewGameRequired = false;
+            ShouldAutoSaveNewGameAfterLoad = false;
+            AutoSaveSlotIndex = -1;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            Debug.Log(
+                $"OnSceneLoaded: {scene.name}, ShouldAutoSaveNewGameAfterLoad={ShouldAutoSaveNewGameAfterLoad}, AutoSaveSlotIndex={AutoSaveSlotIndex}");
+
+            // ONLY restore if we actually have a save to restore AND it's not a new game
+            // Don't restore just because currentSave exists - only when loading from SaveLoadManager
+            // We'll use a flag for this
+
+            // Auto-save new game on StoryScene after overwrite flow
+            // Force close any popup
+            PopupManager.Instance?.ForceClosePopup();
+
+            // Initialize SaveLoadManager if SaveLoadScene loaded
+            if (scene.name == "SaveLoadScene" && mode == LoadSceneMode.Additive && ShouldOpenSaveLoad)
+            {
+                Debug.Log("GameManager: SaveLoadScene loaded. Attempting to initialize SaveLoadManager.");
+                SaveLoadManager manager = FindAnyObjectByType<SaveLoadManager>();
+                if (manager != null)
+                {
+                    Debug.Log("GameManager: Found SaveLoadManager! Initializing...");
+                    //manager.Initialize(IsSaveModeForSaveLoad);
+                }
+                else
+                {
+                    Debug.LogError("GameManager: Failed to find SaveLoadManager in the loaded scene!");
+                }
+            }
+        }
+
         /*private IEnumerator RestoreGameStateWhenReady()
         {
             // Wait for DialogueManager to exist and be ready
@@ -105,8 +156,9 @@ namespace Managers
 
         public void SetNewGame()
         {
+            currentSave = null;
             IsNewGame = true;
-            
+
         }
 
         public void ClearNewGameFlag()
@@ -138,7 +190,7 @@ namespace Managers
                     PopupManager.Instance.ShowMessage("Cannot save until a character is selected.");
                 return;
             }
-            
+
             string path = GetSavePath(slotIndex);
             Directory.CreateDirectory(Path.GetDirectoryName(path)); // Ensure directory exists
             string tmp = path + ".tmp";
@@ -193,6 +245,7 @@ namespace Managers
             }
 
             SetLastUsedSlot(slotIndex);
+            currentSave = save;
         }
 
 
@@ -211,6 +264,7 @@ namespace Managers
             {
                 string json = File.ReadAllText(path);
                 GameSave save = JsonUtility.FromJson<GameSave>(json);
+                currentSave = save;
                 SetLastUsedSlot(slotIndex);
                 return save;
             }
@@ -221,7 +275,7 @@ namespace Managers
             }
         }
 
-        
+
         public void ResetSlot(int slotIndex)
         {
             string path = GetSavePath(slotIndex);
@@ -232,53 +286,65 @@ namespace Managers
                     PopupManager.Instance.ShowMessage($"Slot {slotIndex + 1} reset");
             }
         }
-        
+
         public string GetSlotLabel(int slotIndex)
         {
             string path = GetSavePath(slotIndex);
             if (File.Exists(path))
             {
-                try
+                string json = File.ReadAllText(path);
+                GameSave save = JsonUtility.FromJson<GameSave>(json);
+
+                // Build info string
+                string info = "";
+
+                // Add character if available
+                if (!string.IsNullOrEmpty(save.playerCharacter))
+                    info += $"{save.playerCharacter} - ";
+
+                // Add knot name if available (make it readable)
+                if (!string.IsNullOrEmpty(save.currentKnot))
                 {
-                    string json = File.ReadAllText(path);
-                    GameSave save = JsonUtility.FromJson<GameSave>(json);
-                    
-                    // Build info string
-                    string info = $"Slot {slotIndex + 1}";
-                    
-                    // Add character if available
-                    if (!string.IsNullOrEmpty(save.playerCharacter))
-                        info += $" - {save.playerCharacter}";
-                    
-                    // Add knot name if available (make it readable)
-                    if (!string.IsNullOrEmpty(save.currentKnot))
-                    {
-                        string readableKnot = FormatKnotName(save.currentKnot);
-                        info += $" - {readableKnot}";
-                    }
-                    
-                    // Add date on new line
-                    info += $"\n{save.savedAt}";
-                    
-                    return info;
+                    string readableKnot = FormatKnotName(save.currentKnot);
+                    info += $"{readableKnot}";
                 }
-                catch (System.Exception e)
-                {
-                    Debug.LogError($"Error reading save slot {slotIndex}: {e.Message}");
-                    return $"Slot {slotIndex + 1} - Corrupted Save";
-                }
+                
+                return info;
+
             }
-            return $"Slot {slotIndex + 1} - Empty";
+
+            return "Empty";
         }
-        
+
+        public string GetLastPlayed(int slotIndex)
+        {
+            string path = GetSavePath(slotIndex);
+            if (File.Exists(path))
+            {
+
+                string json = File.ReadAllText(path);
+                GameSave save = JsonUtility.FromJson<GameSave>(json);
+
+                // Build info string
+                string lastplayed = "";
+
+                lastplayed += $"\n{save.savedAt}";
+
+                return lastplayed;
+
+
+            }
+            return "";
+        }
+
         private string FormatKnotName(string knotName)
         {
             // Convert "soldier_chapter_1" to "Soldier Chapter 1"
             if (string.IsNullOrEmpty(knotName)) return "";
-            
+
             // Replace underscores with spaces
             string formatted = knotName.Replace("_", " ");
-            
+
             // Capitalize first letter of each word
             string[] words = formatted.Split(' ');
             for (int i = 0; i < words.Length; i++)
@@ -288,26 +354,26 @@ namespace Managers
                     words[i] = char.ToUpper(words[i][0]) + words[i].Substring(1);
                 }
             }
-            
+
             return string.Join(" ", words);
         }
-        
+
         private string GetSavePath(int slotIndex) =>
             Path.Combine(Application.persistentDataPath, $"SaveSlot_{slotIndex}.json");
-        
+
         private void Update()
         {
             if (!IsPaused && SceneManager.GetActiveScene().name != "MainMenuScene")
                 playTimeSeconds += Time.unscaledDeltaTime;
         }
-        
+
         public string GetFormattedPlaytime()
         {
             int hours = Mathf.FloorToInt(playTimeSeconds / 3600f);
             int minutes = Mathf.FloorToInt((playTimeSeconds % 3600f) / 60f);
             return $"{hours}h {minutes}m";
         }
-        
+
         public void StartNewGameTransition(int slotIndex)
         {
             StartCoroutine(NewGameTransitionSequence(slotIndex));
@@ -323,21 +389,26 @@ namespace Managers
                 Debug.Log("GameManager: Forcefully destroying Main Menu canvas before new scene load.");
                 Destroy(MainMenuCanvas);
             }
-    
+
             AsyncOperation unloadOp = SceneManager.UnloadSceneAsync("SaveLoadScene");
             yield return new WaitUntil(() => unloadOp.isDone);
-    
+
             SetLastUsedSlot(slotIndex);
             SetNewGame();
             ShouldAutoSaveNewGameAfterLoad = true;
             AutoSaveSlotIndex = slotIndex;
             IsResetForNewGameRequired = false;
-    
+
             Debug.Log("Loading StoryScene now with LoadSceneMode.Single...");
             SceneManager.LoadScene("StoryScene", LoadSceneMode.Single);
         }
-        
-        
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+                SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
         /*private IEnumerator RestoreGameStateWhenReady()
         {
             // Wait for DialogueManager to exist and be ready

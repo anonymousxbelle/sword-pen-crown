@@ -13,7 +13,6 @@ namespace Managers
     {
         public static SaveLoadManager Instance{private set; get;}
         [Header("UI References")] 
-        [SerializeField] private Button closeButton;
         [SerializeField] private TMP_Text[] slotLabels;
         [SerializeField] private TextAsset inkFile;
 

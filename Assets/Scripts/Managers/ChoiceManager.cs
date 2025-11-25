@@ -34,11 +34,9 @@ namespace Managers
             if (choiceCanvas != null)
                 choiceCanvas.SetActive(false);
         }
-
-        //INK METHODS
+        
         public void DisplayChoices(Story story, string heading = "")
         {
-            // don't show empty choices
             if (story == null || story.currentChoices.Count == 0)
             {
                 choiceCanvas.SetActive(false);
@@ -48,14 +46,14 @@ namespace Managers
             _currentStory = story;
             
             if (headingText != null)
-                headingText.text = heading;
+                headingText.text = DialogueManager.Instance.GetCurrentLine();
             
             choiceCanvas.SetActive(true);
 
             List<Choice> choices = story.currentChoices;
 
             for (int i = 0; i < choiceButtons.Length; i++)
-            { //create choice buttons
+            { 
                 if (i < choices.Count)
                 {
                     choiceButtons[i].gameObject.SetActive(true);
@@ -63,7 +61,7 @@ namespace Managers
                     TMP_Text buttonText = choiceButtons[i].GetComponentInChildren<TMP_Text>();
                     
                     if (buttonText != null)
-                        buttonText.text = choices[i].text.Trim();
+                        buttonText.text = choices[i].text;
 
                     int choiceIndex = i;
                     choiceButtons[i].onClick.RemoveAllListeners();
@@ -87,38 +85,6 @@ namespace Managers
             
             OnChoiceSelected?.Invoke(choiceIndex);
         }
-        
-        //OLDER METHODS
-        
-        /*private void SelectChoice(int index)
-        {
-            choiceCanvas.SetActive(false);
-            OnChoiceSelected?.Invoke(index);
-        }
-        
-        public void ShowChoices(string heading, string[] choices, Action<int> callback)
-        {
-            headingText.text = heading;
-            OnChoiceSelected = callback;
-
-            choiceCanvas.SetActive(true);
-
-            for (int i = 0; i < choiceButtons.Length; i++)
-            {
-                if (i < choices.Length)
-                {
-                    choiceButtons[i].gameObject.SetActive(true);
-                    choiceButtons[i].GetComponentInChildren<TMP_Text>().text = choices[i];
-                    int index = i;
-                    choiceButtons[i].onClick.RemoveAllListeners();
-                    choiceButtons[i].onClick.AddListener(() => SelectChoice(index));
-                }
-                else
-                {
-                    choiceButtons[i].gameObject.SetActive(false);
-                }
-            }
-        }*/
 
     }
 
