@@ -346,11 +346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49a0333016141444ac467c459dc0bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Managers.SaveLoadManager
-  slotLabels:
-  - {fileID: 352015853}
-  - {fileID: 1435368762}
-  - {fileID: 1578416345}
-  inkFile: {fileID: 4900000, guid: c45e61d282b75b34aa19acd6f52b9588, type: 3}
 --- !u!4 &39916472
 Transform:
   m_ObjectHideFlags: 0
@@ -9079,6 +9074,8 @@ MonoBehaviour:
   choiceCanvas: {fileID: 1370797958}
   endScreen: {fileID: 1089634660}
   popUpCanvas: {fileID: 462021377}
+  cancelButton: {fileID: 698159645}
+  confirmButton: {fileID: 680989484}
 --- !u!1 &1366161889
 GameObject:
   m_ObjectHideFlags: 0

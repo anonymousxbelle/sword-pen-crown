@@ -1,7 +1,3 @@
-// ============================================
-// DISTRIBUTED DEFENSE - INCLUDES
-// ============================================
-
 === distributed_defense
 {soldier_name} divides the troops up into four smaller squads of twenty, fanning them out to cover most of the village, and then she leads one of those squads into battle at the square.
 

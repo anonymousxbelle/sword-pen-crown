@@ -6,22 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="85f4f8ec-a63a-431b-9e24-3706d78ec85c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Sword Pen Crown/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sword Pen Crown/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameSystems.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameSystems.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenuScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenuScene.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SaveLoadScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SaveLoadScene.unity.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/StoryScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StoryScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/StoryFlow.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/StoryFlow.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/shared_scenes/soldier_prologue.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/shared_scenes/soldier_prologue.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_concattack.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_concattack.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_disdefense.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_disdefense.ink" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/conc_attack/soldier_chapter2_conc_intro.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/conc_attack/soldier_chapter2_conc_intro.ink" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/dis_defense/soldier_chapter2_dis_intro.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/dis_defense/soldier_chapter2_dis_intro.ink" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/PopupManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/PopupManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/SaveLoadManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/SaveLoadManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +197,7 @@
       <workItem from="1764052694123" duration="5632000" />
       <workItem from="1764108974760" duration="175000" />
       <workItem from="1764109165235" duration="15498000" />
-      <workItem from="1764134846267" duration="1306000" />
+      <workItem from="1764134846267" duration="2390000" />
     </task>
     <task id="LOCAL-00001" summary="feat(refactor): complete save/load system overhaul and content setup&#10;&#10;This commit finalizes the save/load system stability, dialogue state restoration, &#10;and prepares the project for main narrative content.&#10;&#10;CORE FIXES &amp; REFACTORING:&#10;- Implement seamless new game start flow: when all save slots are full, the player &#10;  is now prompted to reset one, and upon confirmation, is automatically taken to &#10;  the Character Selection scene. This was achieved by moving the scene loading &#10;  coroutine to the persistent GameManager, eliminating previous race conditions &#10;  and blank screen issues.&#10;- Fix exact line loading: DialogueManager now restores the precise dialogue line on load.&#10;- Fix dialogue inactivity after load by ensuring DialogueManager is initialized before restoration.&#10;- Fix overwrite logic causing Main Menu buttons to become unresponsive after overwrite/reset.&#10;- Fix auto-save on reset: Refactored flag cleanup to occur after new scene load and save, &#10;  ensuring new games are saved automatically.&#10;- Add UI/UX validation in PauseMenu.cs to prevent saving during CharacterSelectionScene.&#10;- Update Playtime to count total playtime instead of slot-specific playtime.&#10;- Remove redundant SaveLoadPanel.cs after merging its functionality into SaveLoadManager.cs.&#10;&#10;CONTENT PROGRESS:&#10;- Finalized Character Selection Scene logic.&#10;- Added placeholder scenes for upcoming prologue sequences.">
       <option name="closed" value="true" />
@@ -281,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764129936306</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Optimized SaveLoadManager, PopupManager, GameManager, UIManager">
+      <option name="closed" value="true" />
+      <created>1764136241837</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1764136241837</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +315,8 @@
     <MESSAGE value="Game Code Stable" />
     <MESSAGE value="Added: Choice headings for everychoice, speaker box hidden when narrator, save/load panel having different UI for empty and non empty slots, Main Menu UI complete" />
     <MESSAGE value="CharacterSelectionManager, ChoiceManager and DialogueManager have been optimized" />
-    <option name="LAST_COMMIT_MESSAGE" value="CharacterSelectionManager, ChoiceManager and DialogueManager have been optimized" />
+    <MESSAGE value="Optimized SaveLoadManager, PopupManager, GameManager, UIManager" />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimized SaveLoadManager, PopupManager, GameManager, UIManager" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

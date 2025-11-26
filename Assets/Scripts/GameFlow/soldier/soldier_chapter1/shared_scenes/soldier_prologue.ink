@@ -21,13 +21,11 @@ Then for good measure, she sends a human messenger on one of her fastest steeds 
 Now you must choose her next course of action. 
 
 + [Concentrated Strike]
-Focus most of her troops on the village square to confront the bandits, leaving only a few soldiers to cover the rest of the village. 
+Concentrated Strike: {soldier_name} focuses most of her troops on the village square to confront the bandits, leaving only a few soldiers to cover the rest of the village. 
     ~ soldier_choice_1 = "concentrated"
     -> concentrated_strike
     
-+ [Distributed Defense] 
-Spread her troops across the village to defend multiple areas and investigate the other fires, taking only a few soldiers to the village square.
-  
++ [Distributed Defense] Distributed Defense: {soldier_name} spreads her troops across the village to defend multiple areas and investigate the other fires, taking only a few soldiers to the village square.
     ~ soldier_choice_1 = "distributed"
     -> distributed_defense
 

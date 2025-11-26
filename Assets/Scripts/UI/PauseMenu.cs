@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 using Managers;
 
 namespace UI
@@ -16,7 +14,6 @@ namespace UI
 
         private void Awake()
         {
-            //ensures only one popup manager exists for the entire game.
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
@@ -25,19 +22,15 @@ namespace UI
             Instance = this;
 
         }
-
         private void Update()
         {
             if (Input.GetKeyUp(KeyCode.Escape) && UIManager.Instance.CanPause())
             {
-               // if (PopupManager.Instance != null && PopupManager.Instance.IsPopupActive) return;
                 if (isPaused) Resume();
                 else Pause();
             }
             
         }
-        
-
         public void Pause()
         {
             UIManager.Instance.ShowPauseMenu();
@@ -56,15 +49,15 @@ namespace UI
         
         public void ReturnToMainMenu()
         {
-            Debug.Log("PauseMenu: Main Menu button clicked. Showing confirmation popup.");
             PopupManager.Instance.ShowConfirmation(
                 "Return to Main Menu? Unsaved progress will be lost.",
                 () =>
                 {
                     UIManager.Instance.HidePopUp();
-                    SceneManager.LoadScene("StoryScene");//reloads scene
+                    UIManager.Instance.HidePauseMenu();
+                    UIManager.Instance.GoToMainMenu();
                 },
-                null // Cancel does nothing
+                null 
             );
         
         }

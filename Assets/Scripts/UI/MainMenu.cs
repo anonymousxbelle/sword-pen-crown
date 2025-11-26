@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using Managers;
 
 namespace UI
@@ -8,22 +6,10 @@ namespace UI
     public class MainMenu : MonoBehaviour
 
     {
-        private void Start()
-        { 
-         
-            
-           
-        }
-        
         public void StartNewGame()
         {
             UIManager.Instance.GoToDialogueScreen();
             DialogueManager.Instance.LoadInkStory();
-        }
-        
-        public void LoadScene()
-        {
-           UIManager.Instance.GoToLoadScreen();
         }
         public void QuitGame()
         {

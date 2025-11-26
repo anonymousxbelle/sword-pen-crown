@@ -1,6 +1,3 @@
-// ============================================
-// CONCENTRATED ATTACK - INCLUDES
-// ============================================
 === concentrated_strike
 {soldier_name} splits up her forces quickly. Three squads of five peel away toward the scattered smoke sites, while she leads sixty-five soldiers toward the square.
 
