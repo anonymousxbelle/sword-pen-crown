@@ -1,8 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
 using UI;
 using System.Collections;
 
@@ -12,12 +8,6 @@ namespace Managers
 
     {
         public static SaveLoadManager Instance{private set; get;}
-        [Header("UI References")] 
-        [SerializeField] private TMP_Text[] slotLabels;
-        [SerializeField] private TextAsset inkFile;
-
-        private bool isSaveMode;
-
         void Awake()
         {
             if (Instance != null && Instance != this)
@@ -37,42 +27,44 @@ namespace Managers
                 yield break;
             }
             
-            GameManager.Instance.PlayerChoice = save.playerCharacter;
-            GameManager.Instance.SetCanSave(true); // Enable saving since character is already chosen
+            GameManager.Instance.playerChoice = save.playerCharacter;
+            GameManager.Instance.SetCanSave(true);
             
             
             UIManager.Instance.GoToDialogueScreen();
             
-            // Restore Ink state
             if (!string.IsNullOrEmpty(save.inkState))
             {
                 DialogueManager.Instance.LoadInkStory();
-                yield return null; // Wait one frame for story to initialize
+                yield return null; 
 
                 DialogueManager.Instance.LoadInkState(save.inkState);
-
-                // Restore current line for visual continuity
-                if (!string.IsNullOrEmpty(save.currentLine))
-                    DialogueManager.Instance.SetCurrentLine(save.currentLine);
             }
             
             PopupManager.Instance.ShowMessage($"Loaded Slot {slotIndex + 1}");
         }
+        private IEnumerator SaveWithPopup(int slotIndex)
+        {
+            GameManager.Instance.SaveGame(slotIndex);
+            UIManager.Instance.PopulateLabels();
+            PauseMenu.Instance.Resume();
+            UIManager.Instance.GoToDialogueScreen();
+
+            yield return null; // wait 1 frame for UI to update
+
+            PopupManager.Instance.ShowMessage($"Save Successful");
+        }
+
 
         public void SaveGame(int slotIndex)
         {
             if (GameManager.Instance.SaveExists(slotIndex))
             {
-                Debug.Log("Regular manual save");
                 PopupManager.Instance.ShowConfirmation(
                     $"Slot {slotIndex + 1} already has a save. Overwrite?",
                     () =>
                     {
-                        GameManager.Instance.SaveGame(slotIndex);
-                        UIManager.Instance.PopulateLabels();
-                        PauseMenu.Instance.Resume();
-                        UIManager.Instance.GoToDialogueScreen();
-                        PopupManager.Instance.ShowMessage("Save Successful");
+                        StartCoroutine(SaveWithPopup(slotIndex));
                     },
                     () =>
                     {
@@ -89,6 +81,7 @@ namespace Managers
                 PopupManager.Instance.ShowMessage("Save Successful");
             }
         }
+        
 
         public void LoadGame(int slotIndex)
         {

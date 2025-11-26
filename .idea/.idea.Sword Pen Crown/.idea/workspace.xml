@@ -4,64 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85f4f8ec-a63a-431b-9e24-3706d78ec85c" name="Changes" comment="CharacterSelectionManager, ChoiceManager and DialogueManager have been optimized">
-      <change afterPath="$PROJECT_DIR$/Assets/Art/Backgrounds/CoverArt.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/Backgrounds/CoverArt.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/ActiveSlotOutline.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/ActiveSlotOutline.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/BackButtonBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/BackButtonBackground.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/BackButtonOutline.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/BackButtonOutline.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/CancelButtonBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/CancelButtonBackground.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/CancelButtonOutline.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/CancelButtonOutline.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/ChoiceBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/ChoiceBackground.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/ChoiceOutline.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/ChoiceOutline.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/CrownIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/CrownIcon.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/OkayCancelBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/OkayCancelBackground.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/OkayCancelOutline.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/OkayCancelOutline.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/PauseMenuBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/PauseMenuBackground.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/PauseMenuOutline.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/PauseMenuOutline.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/PenIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/PenIcon.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/PopUpBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/PopUpBackground.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/PopUpOutline.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/PopUpOutline.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/SaveSlotBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/SaveSlotBackground.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/SaveSlotOutline.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/SaveSlotOutline.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/SceneNameBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/SceneNameBackground.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/SceneNameOutline.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/SceneNameOutline.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/SwordIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/UI/Art/SwordIcon.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Recovery/0 (15).unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Recovery/0 (15).unity.meta" afterDir="false" />
+    <list default="true" id="85f4f8ec-a63a-431b-9e24-3706d78ec85c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Sword Pen Crown/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sword Pen Crown/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameSystems.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameSystems.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenuScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenuScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SaveLoadScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SaveLoadScene.unity.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/StoryScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StoryScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/StoryFlow.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/StoryFlow.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_concattack.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_concattack.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_disdefense.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_disdefense.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/conc_attack/soldier_chapter2_conc_intro.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/conc_attack/soldier_chapter2_conc_intro.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/dis_defense/soldier_chapter2_dis_intro.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/dis_defense/soldier_chapter2_dis_intro.ink" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter3/chapter_intro.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter3/chapter_intro.ink" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/CharacterSelectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/CharacterSelectionManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/ChoiceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/ChoiceManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/PopupManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/PopupManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/SaveLoadManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/SaveLoadManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,11 +62,9 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/UIManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/UIManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/UIManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Recovery/0 (15).unity" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -248,7 +206,8 @@
       <workItem from="1763757254307" duration="15608000" />
       <workItem from="1764052694123" duration="5632000" />
       <workItem from="1764108974760" duration="175000" />
-      <workItem from="1764109165235" duration="10356000" />
+      <workItem from="1764109165235" duration="15498000" />
+      <workItem from="1764134846267" duration="1306000" />
     </task>
     <task id="LOCAL-00001" summary="feat(refactor): complete save/load system overhaul and content setup&#10;&#10;This commit finalizes the save/load system stability, dialogue state restoration, &#10;and prepares the project for main narrative content.&#10;&#10;CORE FIXES &amp; REFACTORING:&#10;- Implement seamless new game start flow: when all save slots are full, the player &#10;  is now prompted to reset one, and upon confirmation, is automatically taken to &#10;  the Character Selection scene. This was achieved by moving the scene loading &#10;  coroutine to the persistent GameManager, eliminating previous race conditions &#10;  and blank screen issues.&#10;- Fix exact line loading: DialogueManager now restores the precise dialogue line on load.&#10;- Fix dialogue inactivity after load by ensuring DialogueManager is initialized before restoration.&#10;- Fix overwrite logic causing Main Menu buttons to become unresponsive after overwrite/reset.&#10;- Fix auto-save on reset: Refactored flag cleanup to occur after new scene load and save, &#10;  ensuring new games are saved automatically.&#10;- Add UI/UX validation in PauseMenu.cs to prevent saving during CharacterSelectionScene.&#10;- Update Playtime to count total playtime instead of slot-specific playtime.&#10;- Remove redundant SaveLoadPanel.cs after merging its functionality into SaveLoadManager.cs.&#10;&#10;CONTENT PROGRESS:&#10;- Finalized Character Selection Scene logic.&#10;- Added placeholder scenes for upcoming prologue sequences.">
       <option name="closed" value="true" />
@@ -314,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764110757544</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="CharacterSelectionManager, ChoiceManager and DialogueManager have been optimized">
+      <option name="closed" value="true" />
+      <created>1764129936306</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1764129936306</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

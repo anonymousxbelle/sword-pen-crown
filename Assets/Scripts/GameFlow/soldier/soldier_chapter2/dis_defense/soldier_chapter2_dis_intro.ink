@@ -39,15 +39,15 @@ Before she reaches it, {soldier_name} hesitates for half a breath.
 + [{soldier_name} steadies herself. She is a captain first.]
     ~ feeling_state = "duty"
     Duty settles over her shoulders like armor. She forces her breath steady, ready to face whatever waits inside.
-    -> chamber_entry_bridge
+    -> distributed_defense_enter_the_chamber
 
 + [{soldier_name} lets the past catch up to her for a moment.]
     ~ feeling_state = "memory"
     A flicker of old memories presses at her ribs: laughter, voices, a warmth she hasn’t felt in years. She allows the ache, just for a heartbeat.
-    -> chamber_entry_bridge
+    -> distributed_defense_enter_the_chamber
 
 
-=== chamber_entry_bridge
+=== distributed_defense_enter_the_chamber
 The lady-in-waiting opens the door and she is guided into a small chamber off the King’s private suite. 
 
 The wood-paneled room, with its table, single window, and armchairs arranged for privacy, is intimate in a way the throne room could never be. The air tastes of old heartache.

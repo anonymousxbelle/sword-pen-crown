@@ -61,12 +61,12 @@ Morale is low, and though the kingdom may have survived this day, war lurks on t
 What does she do next?
 
 + [Say a quiet prayer for the dead.]
-    -> prayer_dischoice_bridge
+    -> distributed_defense_prayer
 
 + [Get to work immediately.]
-    -> return_dischoice_bridge
+    -> distributed_defense_get_to_work 
 
-=== prayer_dischoice_bridge
+=== distributed_defense_prayer
  She bows her head for a few seconds. Her eyes sting but not from the fire. For a moment, the battlefield goes unbearably still.
 
 She whispers a short prayer, one her mother taught her when she were barely old enough to speak. One she had whispered over her parent's grave. 
@@ -74,9 +74,9 @@ She whispers a short prayer, one her mother taught her when she were barely old 
 It is not a soldier’s prayer. It is a human one.  It is also a promise, a promise that their lives and sacrifices will not be swallowed by silence.
 
 When she finally opens her eyes, ash drifts like slow snow around her. She rises to her feet and keeps moving. Duty waits for no one.
--> disdefense_aftermath_letters
+-> distributed_defense_letter_aftermath
     
-=== return_dischoice_bridge
+=== distributed_defense_get_to_work
 She turns away from the bodies and the smoke before the weight can settle heavy on her shoulders. There is no time to linger.
 
 She keeps her head high as she tries not to look at the death and destruction that surrounds her.
@@ -84,11 +84,11 @@ She keeps her head high as she tries not to look at the death and destruction th
 What's left of her soldiers glance at her, looking to her for certainty, for strength. She gives them what she can, even if it feels weak.
 
 A captain does not have the luxury of mourning. Not when there is still so much left to be done.
--> disdefense_aftermath_letters
+-> distributed_defense_letter_aftermath
 
 
 
-=== disdefense_aftermath_letters
+=== distributed_defense_letter_aftermath
 
 The aftermath of the battle has {soldier_name} working late into the afternoon. By the time she returns to her tent, she finds two carrier pigeons perched on her sleeping bag.
 
@@ -101,12 +101,12 @@ She forces the thought aside and looks to the second pigeon, which carries two r
 Which does sge open first?
 
 + [Open the letter from the royal army first.]
-    -> open_army_firstdis
+    -> distributed_defense_open_army_letter_first
 
 + [Open the letter with the familiar seal first.]
-    -> open_personal_firstdis
+    -> distributed_defense_open_personal_letter_first
 
-=== open_army_firstdis
+=== distributed_defense_open_army_letter_first
 She breaks the royal army letter first. It details her orders. She is to leave the village four days earlier than planned, relieved of duty, and a new captain is already en route.
 
 She is to return to the capital immediately and present herself before the King at the Palace. 
@@ -121,9 +121,9 @@ The royal crest. She takes it with a tentative hand. The letter inside is brief,
 
 She clenches the parchment tightly in her grasp even as she seals her response to the army and watches the pigeon fly off.
 
--> continue_after_lettersdis
+-> distributed_defense_after_letters
 
-=== open_personal_firstdis
+=== distributed_defense_open_personal_letter_first
 
 She picks up the letter with the familiar seal, the royal crest, first, her hand trembling slightly. The letter inside is brief, a single line. 
 
@@ -142,9 +142,9 @@ She hastily pens a reply on the back, giving a detailed report of the morning’
 
 She ties the message to the bird’s leg and watches the pigeon fly off.
 
--> continue_after_lettersdis
+-> distributed_defense_after_letters
 
-=== continue_after_lettersdis
+=== distributed_defense_after_letters
 The next three days are consumed with grief and labor. 
 
 Able-bodied troops help tend to the injured and rebuild damaged homes and food stores. Most of the soldiers are wounded, their numbers gutted, and morale is low.

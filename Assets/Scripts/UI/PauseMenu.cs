@@ -30,7 +30,7 @@ namespace UI
         {
             if (Input.GetKeyUp(KeyCode.Escape) && UIManager.Instance.CanPause())
             {
-                if (PopupManager.Instance != null && PopupManager.Instance.IsPopupActive) return;
+               // if (PopupManager.Instance != null && PopupManager.Instance.IsPopupActive) return;
                 if (isPaused) Resume();
                 else Pause();
             }
@@ -61,7 +61,7 @@ namespace UI
                 "Return to Main Menu? Unsaved progress will be lost.",
                 () =>
                 {
-                    PopupManager.Instance.ForceClosePopup();
+                    UIManager.Instance.HidePopUp();
                     SceneManager.LoadScene("StoryScene");//reloads scene
                 },
                 null // Cancel does nothing

@@ -2,6 +2,8 @@ using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
+
 
 public class UIManager : MonoBehaviour
 {
@@ -49,6 +51,11 @@ public class UIManager : MonoBehaviour
     [Header("Choices")] [SerializeField] private GameObject choiceCanvas;
 
     [Header("EndScreen")] [SerializeField] private GameObject endScreen;
+    
+    [Header("PopUp")]
+    [SerializeField] private GameObject popUpCanvas;
+    [SerializeField] private Button cancelButton;
+    [SerializeField] private Button confirmButton;
 
     void Awake()
     {
@@ -167,6 +174,26 @@ public class UIManager : MonoBehaviour
         pauseMenuCanvas.SetActive(false);
     }
 
+    public void ShowPopUp()
+    {
+        popUpCanvas.SetActive(true);
+    }
+
+    public void HidePopUp()
+    {
+        popUpCanvas.SetActive(false);
+    }
+
+    public void HidePopUpCancelButton()
+    {
+        cancelButton.gameObject.SetActive(false);
+    }
+
+    public void ShowPopUpCancelButton()
+    {
+        cancelButton.gameObject.SetActive(true);
+    }
+    
     public bool CanPause()
     {
         return activeScreen == dialogueCanvas;
