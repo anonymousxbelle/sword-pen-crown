@@ -118,6 +118,8 @@ Had anyone else spoken of this, they would have been detained as well as anyone 
 
 Flashes of the betrayal that caused the rift between Name and {king_name}  four years ago cross her mind, a hand squeezing her heart, before she pulls herself back to the present.
 
+What does she say?
+
 + ["I trust King’s Name"]
     -> voice_your_trust
     

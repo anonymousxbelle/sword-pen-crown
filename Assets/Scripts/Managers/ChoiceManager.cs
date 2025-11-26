@@ -31,15 +31,14 @@ namespace Managers
             }
 
             // Hide choices until needed
-            if (choiceCanvas != null)
-                choiceCanvas.SetActive(false);
+            //if (choiceCanvas != null)
+               // choiceCanvas.SetActive(false);
         }
         
-        public void DisplayChoices(Story story, string heading = "")
+        public void DisplayChoices(Story story)
         {
             if (story == null || story.currentChoices.Count == 0)
             {
-                choiceCanvas.SetActive(false);
                 return;
             }
 
@@ -48,7 +47,7 @@ namespace Managers
             if (headingText != null)
                 headingText.text = DialogueManager.Instance.GetCurrentLine();
             
-            choiceCanvas.SetActive(true);
+            UIManager.Instance.GoToChoiceScreen();
 
             List<Choice> choices = story.currentChoices;
 

@@ -13,7 +13,6 @@ public class CharacterSelectionManager : MonoBehaviour
     [SerializeField] private Button swordButton;
     [SerializeField] private Button penButton;
     [SerializeField] private Button crownButton;
-    [SerializeField] private GameObject characterSelectionPanel;
 
     private Story _story;
 

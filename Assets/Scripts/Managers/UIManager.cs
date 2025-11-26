@@ -2,48 +2,54 @@ using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class UIManager : MonoBehaviour
-{   
+{
     public static UIManager Instance { get; private set; }
 
     private GameObject activeScreen;
-    
-    [Header("Title Screen")] 
-    [SerializeField] GameObject titleScreen;
-    
-    [Header("Main Menu")] 
-    [SerializeField] private GameObject mainMenuCanvas;
+
+    [Header("Title Screen")] [SerializeField]
+    GameObject titleScreen;
+
+    [Header("Main Menu")] [SerializeField] private GameObject mainMenuCanvas;
     [SerializeField] private Button loadButton;
-    
-    [Header("Pause Menu")] 
-    [SerializeField] private GameObject pauseMenuCanvas;
+
+    [Header("Pause Menu")] [SerializeField]
+    private GameObject pauseMenuCanvas;
+
     [SerializeField] private Button saveButton;
-    
-    [Header("Load Panel")] 
-    [SerializeField] private GameObject loadCanvas;
+
+    [Header("Load Panel")] [SerializeField]
+    private GameObject loadCanvas;
+
     [SerializeField] private TMP_Text[] loadLabels;
     [SerializeField] private TMP_Text[] loadSlotLastPlayed;
     [SerializeField] private GameObject[] activeLoadOutline;
     [SerializeField] private GameObject[] inactiveLoadOutline;
     [SerializeField] private GameObject[] loadSlotSceneOutline;
-    
-    [Header("Save Panel")]
-    [SerializeField] private GameObject saveCanvas;
+
+    [Header("Save Panel")] [SerializeField]
+    private GameObject saveCanvas;
+
     [SerializeField] private TMP_Text[] saveLabels;
     [SerializeField] private TMP_Text[] saveSlotLastPlayed;
     [SerializeField] private GameObject[] activeSaveOutline;
     [SerializeField] private GameObject[] inactiveSaveOutline;
     [SerializeField] private GameObject[] saveSlotSceneOutline;
-    
-    [Header("Dialogue")] 
-    [SerializeField] private GameObject dialogueCanvas;
+
+    [Header("Dialogue")] [SerializeField] private GameObject dialogueCanvas;
     [SerializeField] private GameObject speakerBox;
-    
-    [Header("Character Selection")] 
-    [SerializeField] private GameObject characterSelectionPanel;
-    
-    [Header("Choices")]
-    [SerializeField] private GameObject choicePanel;
+    [SerializeField] private TMP_Text speakerText;
+    [SerializeField] private Image characterImage;
+
+    [Header("Character Selection")] [SerializeField]
+    private GameObject characterSelectionCanvas;
+
+    [Header("Choices")] [SerializeField] private GameObject choiceCanvas;
+
+    [Header("EndScreen")] [SerializeField] private GameObject endScreen;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -51,8 +57,10 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
     }
+
     void Start()
     {
         SwitchScreen(titleScreen);
@@ -68,6 +76,7 @@ public class UIManager : MonoBehaviour
         {
             activeScreen.SetActive(false);
         }
+
         newScreen.SetActive(true);
         activeScreen = newScreen;
     }
@@ -79,18 +88,40 @@ public class UIManager : MonoBehaviour
 
     public void GoToDialogueScreen()
     {
-       SwitchScreen(dialogueCanvas);
+        SwitchScreen(dialogueCanvas);
     }
 
     public void ShowSpeaker()
     {
-            speakerBox.SetActive(true);
+        speakerBox.SetActive(true);
     }
+
     public void HideSpeaker()
     {
         speakerBox.SetActive(false);
     }
 
+    public void SetSpeaker(string speakerName)
+    {
+        speakerText.text = speakerName;
+    }
+
+    public void ShowCharacterImage()
+    {
+        characterImage.gameObject.SetActive(true);
+    }
+
+    public void HideCharacterImage()
+    {
+        characterImage.gameObject.SetActive(false);
+    }
+
+    public void SetCharacterImage(string spritePath)
+    {
+        Sprite sprite = Resources.Load<Sprite>(spritePath);
+        characterImage.sprite = sprite;
+    }
+    
 
     public void GoToLoadScreen()
     {
@@ -104,17 +135,22 @@ public class UIManager : MonoBehaviour
         SwitchScreen(saveCanvas);
         PopulateLabels();
         ChooseSaveSlotOutline();
-        
+
     }
-    
+
     public void GoToCharacterSelectionScreen()
     {
-        SwitchScreen(characterSelectionPanel);
+        SwitchScreen(characterSelectionCanvas);
     }
 
     public void GoToChoiceScreen()
     {
-        SwitchScreen(choicePanel);
+        SwitchScreen(choiceCanvas);
+    }
+
+    public void GoToEndScreen()
+    {
+        SwitchScreen(endScreen);
     }
 
     public void ShowPauseMenu()
@@ -142,13 +178,14 @@ public class UIManager : MonoBehaviour
         {
             loadLabels[i].text = GameManager.Instance.GetSlotLabel(i);
             saveLabels[i].text = loadLabels[i].text;
-            loadSlotLastPlayed[i].text =  GameManager.Instance.GetLastPlayed(i);
+            loadSlotLastPlayed[i].text = GameManager.Instance.GetLastPlayed(i);
             saveSlotLastPlayed[i].text = loadSlotLastPlayed[i].text;
         }
     }
+
     public void ChooseLoadSlotOutline()
     {
-        for(int i = 0; i < loadLabels.Length; i++)
+        for (int i = 0; i < loadLabels.Length; i++)
             if (loadLabels[i].text == "Empty")
             {
                 activeLoadOutline[i].SetActive(false);
@@ -162,10 +199,10 @@ public class UIManager : MonoBehaviour
                 loadSlotSceneOutline[i].SetActive(true);
             }
     }
-    
+
     public void ChooseSaveSlotOutline()
     {
-        for(int i = 0; i < loadLabels.Length; i++)
+        for (int i = 0; i < loadLabels.Length; i++)
             if (loadLabels[i].text == "Empty")
             {
                 activeSaveOutline[i].SetActive(false);

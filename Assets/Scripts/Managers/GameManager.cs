@@ -202,7 +202,7 @@ namespace Managers
 
             if (DialogueManager.Instance != null)
             {
-                inkStateJson = DialogueManager.Instance.GetInkState();
+                inkStateJson = DialogueManager.Instance.GetInkSaveData();
                 currentKnot = DialogueManager.Instance.GetCurrentKnot();
                 currentLine = DialogueManager.Instance.GetCurrentLine(); // ✅ NEW: capture currently shown line
             }
