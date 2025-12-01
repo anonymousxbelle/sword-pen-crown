@@ -58,6 +58,6 @@ public class CharacterSelectionManager : MonoBehaviour
         DialogueManager.Instance.isCharacterSelection = false;
         
         GameManager.Instance.SetCanSave(true);
-        DialogueManager.Instance.DisplayNextInkLine();
+        DialogueManager.Instance.DisplayCurrentInkLine();
     }
 }

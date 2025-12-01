@@ -129,7 +129,6 @@ public class UIManager : MonoBehaviour
         characterImage.sprite = sprite;
     }
     
-
     public void GoToLoadScreen()
     {
         SwitchScreen(loadCanvas);

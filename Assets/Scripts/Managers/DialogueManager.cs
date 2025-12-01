@@ -87,6 +87,7 @@ namespace Managers
             {
                 Debug.Log("Story has ended");
                 // Story has ended
+                UIManager.Instance.GoToEndScreen();
                 EndInkDialogue();
             }
         }
@@ -131,24 +132,28 @@ namespace Managers
 
                     switch (tagKey)
                     {
+                        case "narrator":
+                            UIManager.Instance.HideSpeaker();
+                            break;
+
                         case "speaker":
                             UIManager.Instance.SetSpeaker(tagValue);
                             UIManager.Instance.ShowSpeaker();
 
                             break;
-
+                        
                         case "image":
                             UIManager.Instance.SetCharacterImage(tagValue);
                             UIManager.Instance.ShowCharacterImage();
 
                             break;
+                        
                     }
                 }
             }
             else
             {
                 // No tags - hide speaker and image
-                UIManager.Instance.HideSpeaker();
                 UIManager.Instance.HideCharacterImage();
             }
         }

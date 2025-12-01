@@ -4,14 +4,129 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85f4f8ec-a63a-431b-9e24-3706d78ec85c" name="Changes" comment="">
+    <list default="true" id="85f4f8ec-a63a-431b-9e24-3706d78ec85c" name="Changes" comment="Release ver 1. Complete functionality. Music and Art not pushed.">
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/1. Ironroot.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/1. Ironroot.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/10. Thundershade.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/10. Thundershade.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/2. Nightshade.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/2. Nightshade.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/3. Skystone.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/3. Skystone.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/4. Goldleaf.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/4. Goldleaf.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/5. Whisperwind.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/5. Whisperwind.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/6. Lunaris.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/6. Lunaris.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/7. Wolfspire.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/7. Wolfspire.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/8. Soulforge.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/8. Soulforge.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/9. Falconreach.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Loops/9. Falconreach.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/1. Ironroot.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/1. Ironroot.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/10. Thundershade.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/10. Thundershade.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/2. Nightshade.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/2. Nightshade.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/3. Skystone.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/3. Skystone.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/4. Goldleaf.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/4. Goldleaf.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/5. Whisperwind.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/5. Whisperwind.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/6. Lunaris.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/6. Lunaris.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/7. Wolfspire.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/7. Wolfspire.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/8. Soulforge.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/8. Soulforge.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/9. Falconreach.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack/Tracks/9. Falconreach.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Beautiful Garden - Full Version.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Beautiful Garden - Full Version.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Info.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Info.pdf.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Ending.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Ending.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Full Loop.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Full Loop.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 1 End.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 1 End.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 1 Start.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 1 Start.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 1.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 1.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 2 End.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 2 End.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 2 Start.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 2 Start.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 2.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 2.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 3 End.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 3 End.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 3 Start.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 3 Start.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 3.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden/Loops/Beautiful Garden Loop 3.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/diff_paths.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/diff_paths.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/eve_fire.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/eve_fire.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/eve_peace.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/eve_peace.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/famine_strike.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/famine_strike.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/fight_zombie.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/fight_zombie.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/kingdom_fade.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/kingdom_fade.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/kingdom_flourish.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/kingdom_flourish.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/normal_yell.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/normal_yell.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/send_message.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/send_message.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/seventyfive_battle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/seventyfive_battle.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/smaller_battle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/smaller_battle.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/soldier_warning.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/soldier_warning.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/speak_order.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/speak_order.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/three_kids.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/three_kids.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/villager_yell.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/villager_yell.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Sword Pen Crown/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sword Pen Crown/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/StoryScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StoryScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/StoryFlow.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/StoryFlow.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/opening.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/opening.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/shared_scenes/soldier_prologue.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/shared_scenes/soldier_prologue.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_concattack.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_concattack.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_disdefense.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter1/soldier_disdefense.ink" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/conc_attack/soldier_chapter2_conc_intro.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/conc_attack/soldier_chapter2_conc_intro.ink" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/dis_defense/soldier_chapter2_dis_intro.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter2/dis_defense/soldier_chapter2_dis_intro.ink" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter3/chapter_intro.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter3/chapter_intro.ink" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter3/deflect.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter3/deflect.ink" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter3/king_trust.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameFlow/soldier/soldier_chapter3/king_trust.ink" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/CharacterSelectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/CharacterSelectionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ink-Libraries.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ink-Libraries.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InkEditor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/InkEditor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,9 +167,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/UIManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/UIManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/toyos/OneDrive/Sword-Pen-Crown/Sword Pen Crown/Assets/Scripts/Managers/UIManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Fantasy RPG Ambient Music Pack.meta" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/LUMORA Demo - Beautiful Garden.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Recovery/0 (15).unity" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -197,7 +311,16 @@
       <workItem from="1764052694123" duration="5632000" />
       <workItem from="1764108974760" duration="175000" />
       <workItem from="1764109165235" duration="15498000" />
-      <workItem from="1764134846267" duration="2390000" />
+      <workItem from="1764134846267" duration="2811000" />
+      <workItem from="1764464555752" duration="1370000" />
+      <workItem from="1764466646872" duration="1261000" />
+      <workItem from="1764557297274" duration="14000" />
+      <workItem from="1764557322589" duration="3568000" />
+      <workItem from="1764565703109" duration="3948000" />
+      <workItem from="1764599804855" duration="116000" />
+      <workItem from="1764599945640" duration="54000" />
+      <workItem from="1764600058532" duration="241000" />
+      <workItem from="1764600317041" duration="198000" />
     </task>
     <task id="LOCAL-00001" summary="feat(refactor): complete save/load system overhaul and content setup&#10;&#10;This commit finalizes the save/load system stability, dialogue state restoration, &#10;and prepares the project for main narrative content.&#10;&#10;CORE FIXES &amp; REFACTORING:&#10;- Implement seamless new game start flow: when all save slots are full, the player &#10;  is now prompted to reset one, and upon confirmation, is automatically taken to &#10;  the Character Selection scene. This was achieved by moving the scene loading &#10;  coroutine to the persistent GameManager, eliminating previous race conditions &#10;  and blank screen issues.&#10;- Fix exact line loading: DialogueManager now restores the precise dialogue line on load.&#10;- Fix dialogue inactivity after load by ensuring DialogueManager is initialized before restoration.&#10;- Fix overwrite logic causing Main Menu buttons to become unresponsive after overwrite/reset.&#10;- Fix auto-save on reset: Refactored flag cleanup to occur after new scene load and save, &#10;  ensuring new games are saved automatically.&#10;- Add UI/UX validation in PauseMenu.cs to prevent saving during CharacterSelectionScene.&#10;- Update Playtime to count total playtime instead of slot-specific playtime.&#10;- Remove redundant SaveLoadPanel.cs after merging its functionality into SaveLoadManager.cs.&#10;&#10;CONTENT PROGRESS:&#10;- Finalized Character Selection Scene logic.&#10;- Added placeholder scenes for upcoming prologue sequences.">
       <option name="closed" value="true" />
@@ -279,7 +402,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764136241837</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Optimized PauseMenu and MainMenu. All code fully optimized">
+      <option name="closed" value="true" />
+      <created>1764139079607</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1764139079607</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,7 +447,10 @@
     <MESSAGE value="Added: Choice headings for everychoice, speaker box hidden when narrator, save/load panel having different UI for empty and non empty slots, Main Menu UI complete" />
     <MESSAGE value="CharacterSelectionManager, ChoiceManager and DialogueManager have been optimized" />
     <MESSAGE value="Optimized SaveLoadManager, PopupManager, GameManager, UIManager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Optimized SaveLoadManager, PopupManager, GameManager, UIManager" />
+    <MESSAGE value="Release ver 1. Complete functionality" />
+    <MESSAGE value="Optimized PauseMenu and MainMenu. All code fully optimized" />
+    <MESSAGE value="Release ver 1. Complete functionality. Music and Art not pushed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Release ver 1. Complete functionality. Music and Art not pushed." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

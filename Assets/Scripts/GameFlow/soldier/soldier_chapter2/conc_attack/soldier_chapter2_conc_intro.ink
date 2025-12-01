@@ -1,5 +1,5 @@
 === soldier_chapter2_concentrated_strike
-
+# narrator:
 The ride to the capital from the border would usually take five days—seven to eight if traveling with a troop, as the Captain had when she made the trip the first time. But the letter burning in the pocket sewn into the lining of her tunic drove her harder. 
 
 She covered the distance in three and a half days, and would have ridden faster if not for the fear of killing her horse, the trusty steed she’d had since she was fourteen. 
@@ -73,45 +73,42 @@ Their eyes lock, and in that wordless exchange lies everything the last four yea
 Her name slips from {soldier_name}’s lips before she can stop it, soft and heavy with habit. 
 
 # speaker: {soldier_name}
-# image: Resources/Portraits/soldier_sprite
 {king_name}...
 
+# narrator:
 The King stiffens almost imperceptibly. The lady-in-waiting, still lingering, bows hastily and scurries out. {poet_name} lets out a laugh, sharp and edged with sarcasm but not unkind. 
 
 # speaker: {poet_name}
-# image: Resources/Portraits/poet_sprite
 “Seven years and still not used to the name change, are you?”
+# narrator:
+His flint-sharp eyes and sly smile twist something warm in her chest—a warmth she hadn’t realized she’d been missing. 
 
-His flint-sharp eyes and sly smile twist something warm in her chest—a warmth she hadn’t realized she’d been missing. But {king_name}s jaw ti
-
-ghtens at his words, her silence heavy. For a breath, though, it feels as if nothing has changed. They are the same three children, only tempered by years they can never reclaim.
+But {king_name}s jaw tightens at his words, her silence heavy. For a breath, though, it feels as if nothing has changed. They are the same three children, only tempered by years they can never reclaim.
 
 # speaker: {king_name}
-# image: Resources/Portraits/king_sprite
 "I'm sure you're wondering why I summoned you here," 
 
+# narrator:
 {king_name} said, effectively cutting off whatever else {poet_name} was going to say. But of course, {poet_name} would never let it go without getting the last word. 
 
 # speaker: {poet_name}
-# image: Resources/Portraits/poet_sprite
 "If {soldier_name} couldn't piece together that we're here because of the war you and your council have been trying so hard to keep under wraps, then we should really question the competencies of the captains in our royal army."
-
+# narrator:
 Both {soldier_name} and {king_name} elect to ignore {poet_name}, a habit they'd honed years before, {soldier_name} more so than {king_name}. {soldier_name} noticed a flicker of something flash across {king_name}'s eyes. 
 
 There was more truth to the {poet_name}'s jibe than snark.
 
 # speaker: {king_name}
-# image: Resources/Portraits/king_sprite
- "I heard news of the village you were stationed at, {soldier_name}. Three other villages reported attacks, but yours was hit the hardest by far. Your subordinates reported that you cut down more of the attackers than anyone else. You should be proud." 
+ "I heard news of the village you were stationed at, {soldier_name}. Three other villages reported attacks, but yours was hit the hardest by far. Your subordinates reported that you cut down more of the attackers than anyone else. You should be proud."
  
+# narrator: 
  She did not smile, but something close to one tugged at the corner of her mouth, pride, sorrow, and some other weight {soldier_name} could not decipher. 
 
 {soldier_name} felt the words sink like a stone in her chest. 
 
 # speaker: {soldier_name}
-# image: Resources/Portraits/soldier_sprite
 "There is little pride to be felt when my choices left the villagers starving and some of them dead." 
-
+# narrator:
 She said bitterly.
 
 -> chapter3_intro

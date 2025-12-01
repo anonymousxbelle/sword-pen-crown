@@ -1,45 +1,61 @@
 === distributed_defense
+# image:speak_order
 {soldier_name} divides the troops up into four smaller squads of twenty, fanning them out to cover most of the village, and then she leads one of those squads into battle at the square.
 
+# image:smaller_battle
 The moment she arrives, chaos greets her. Smoke fills the air and the heat is suffocating. 
-
+# image:smaller_battle
 Seven of the ten stationed guards still hold the attackers back, striking them down before they can cross over the barricades into the village, though their wounds speak to a fight that has not gone well. 
-
+# image:smaller_battle
 Of the missing three, there is no sign.
-
+# image:smaller_battle
 Desperate villagers swing makeshift weapons at the attackers, trying in vain to defend their homes. She turns her attention to the villagers.  
 
 # speaker: {soldier_name}
-# image: Resources/Portraits/soldier_sprite
-
+# image:villager_yell
 “Stand down! Put out the fires!”
-
+# image:fight_zombie
 Then she jumps headfirst into the chaos, her troops following behind her. The square is full of noise. A cacophony of yells, the clash of steel, and the roar of the fire.
-
+# image:fight_zombie
 It is a tune she is familiar with and yet something feels wrong. she slashes one of the attackers across the arm, he doesn’t flinch.
-
+# image:fight_zombie
 she sees another take a spear through the stomach and only falter when the steel rips clear through his spine.
-
+# image:fight_zombie
 It hits her at once. Something is wrong with these men. Something dangerous. Something that’s keeping them from feeling or responding to pain.
 
+
 # speaker: {soldier_name}
-# image: Resources/Portraits/soldier_sprite
+# image:normal_yell
 
 “Aim to kill!” 
 
+# image:fight_zombie
 Her voice thunders, echoed by her soldiers through the square. she'll have to forgo taking prisoners for questioning.
-
+# image:fight_zombie
 The battle rages for hours. {soldier_name}'s troops fight valiantly but the enemy feels endless. Without numbers on her side, the clash is brutal. For every bandit she cuts down, two more push through.
 
+# image:fight_zombie
 What’s worse is their refusal to fall from wounds that would cripple any normal man. {soldier_name}'s soldiers strain under the sheer numbers, and the cracks begin to show. Bandits slip past, attacking villagers and feeding the chaos.
+
+# narrator:
+There are no more visuals accompanying the story
++ [Play On]
+    -> play_on_dis
+    
+# end: 
++ Check back later 
+    -> END
+
+=== play_on_dis 
 
 Hours pass before the last bandit falls. {soldier_name} drops to one knee, exhausted, battered, and bruised. The village square is riddled with bodies, too many of them her own men and villagers.
 
 She pushes herself back to her feet to take stock of the damage. Of the original ten stationed guards, eight are dead. From her twenty, twelve more have fallen and four lie critically wounded. Six villagers dead, ten more injured. A scout kneels before her, face grim
 
-# speaker: Soldier
+# speaker: Scout
 “Captain, no reinforcements could come. The next village… they were under attack as well. The bandits hit the food stores. They stole what they could, then burned the rest.”
- 
+
+# narrator: 
 Later, word comes back from the squads you sent out through the village. The fires were indeed set at the food storage sites and farms.
 
 But the soldiers fought off the bandits there, managed to put out the flames, and kept the villagers’ homes from being destroyed.
@@ -94,7 +110,7 @@ The words strike a chord in her. If the border was hit in several places at once
 
 She forces the thought aside and looks to the second pigeon, which carries two rolls of parchment. One bears the crest of the royal army. The other bears a seal that makes her pause, one she has not seen in four years.
 
-Which does sge open first?
+Which does she open first?
 
 + [Open the letter from the royal army first.]
     -> distributed_defense_open_army_letter_first

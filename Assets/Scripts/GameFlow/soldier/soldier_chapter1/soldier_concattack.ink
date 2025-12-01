@@ -1,43 +1,65 @@
 === concentrated_strike
+# image:speak_order
 {soldier_name} splits up her forces quickly. Three squads of five peel away toward the scattered smoke sites, while she leads sixty-five soldiers toward the square.
 
+# image:seventyfive_battle
 The moment she arrives, chaos greets her. Smoke fills the air and the heat is suffocating. 
-
+# image:seventyfive_battle
 Seven of the ten stationed guards still hold the attackers back, striking them down before they can cross over the barricades into the village, though their wounds speak to a fight that has not gone well. 
 
+# image:seventyfive_battle
 Of the missing three, there is no sign.
 
+# image:seventyfive_battle
 Desperate villagers swing makeshift weapons at the attackers, trying in vain to defend their homes. She turns her attention to the villagers. 
 
 # speaker: {soldier_name}
-# image: Resources/Portraits/soldier_sprite
+# image:villager_yell
 
 “Stand down! Put out the fires!”
 
+# image:fight_zombie
 Then she jumps headfirst into the chaos, her troops following behind her. The square is full of noise. A cacophony of yells, the clash of steel, and the roar of the fire.
 
+# image:fight_zombie
 It is a tune she is familiar with and yet something feels wrong. she slashes one of the attackers across the arm, he doesn’t flinch.
 
+# image:fight_zombie
 she sees another take a spear through the stomach and only falter when the steel rips clear through his spine.
 
+# image:fight_zombie
 It hits her at once. Something is wrong with these men. Something dangerous. Something that’s keeping them from feeling or responding to pain.
 
 # speaker: {soldier_name}
-# image: Resources/Portraits/soldier_sprite
+# image:normal_yell
 
 “Aim to kill!” 
 
+# image:fight_zombie
 Her voice thunders, echoed by her soldiers through the square. she'll have to forgo taking prisoners for questioning.
 
+# image:fight_zombie
 The battle rages for hours. The enemy is countless and impervious to non-life-threatening injuries, but not skilled enough to overcome soldiers from the Royal Army.
+
+# narrator:
+There are no more visuals accompanying the story
++ [Play On]
+    -> play_on
+    
+# end: 
++ Check back later 
+    -> END
+
+=== play_on 
 
 Once the last attacker falls, the square goes quiet, save for the crackle of flames and the ragged breath of her soldiers.
 
 Surrounded by bodies, she takes stock. Of the original ten stationed guards, six are dead. From her sixty-five, four more have fallen, and fifteen lie critically wounded. Six villagers  dead, twelve more injured. A scout kneels before her, face grim.
 
-# speaker: Soldier
+# speaker: Scout
 “Captain, no reinforcements could come. The next village… they were under attack as well. The bandits hit the food stores. They stole what they could, then burned the rest.”
 
+# narrator:
 Later, word comes back from the squads she sent out through the village, those still alive, that is. The fires were indeed set at the food storage sites and farms, some of chaos spreading to the homes of villagers who lived close by. 
 
 Nearly all the soldiers she dispatched perished; ten survived, but only barely.
